@@ -51,7 +51,6 @@
             color: inherit;
         }
 
-        /* CONTAINER */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -166,7 +165,6 @@
             align-items: start;
         }
 
-        /* INFO SIDEBAR */
         .info-card {
             background-color: var(--bg-white);
             border-radius: 20px;
@@ -255,7 +253,7 @@
             transform: scale(1.03);
         }
 
-        /* FORM STYLES */
+        /* FORM */
         .form-card {
             background-color: var(--bg-white);
             border-radius: 20px;
@@ -340,43 +338,6 @@
             transform: translateY(-2px);
         }
 
-        /* FAQ SECTION */
-        .faq-section {
-            padding: 40px 0 80px;
-        }
-
-        .faq-title {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 40px;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .faq-card {
-            background-color: var(--bg-white);
-            padding: 24px;
-            border-radius: 16px;
-            border: 1px solid #E2E8F0;
-        }
-
-        .faq-card h4 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 8px;
-        }
-
-        .faq-card p {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
         /* FOOTER */
         .footer {
             background-color: #0F172A;
@@ -386,14 +347,10 @@
             text-align: center;
         }
 
-        /* RESPONSIVE MÓVIL */
         @media (max-width: 768px) {
             .contact-hero h1 { font-size: 28px; }
             .contact-grid { grid-template-columns: 1fr; gap: 24px; }
             .form-row { grid-template-columns: 1fr; }
-            .form-card { padding: 24px 16px; }
-            .info-card { padding: 24px 16px; }
-            .faq-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
         }
     </style>
@@ -403,14 +360,14 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="container nav-container">
-            <!-- LOGO: HACE CLIC Y REDIRIGE AL INICIO -->
+            <!-- LOGO: CLIC REDIRIGE AL INICIO -->
             <a href="index.html" class="brand-logo">
                 <img src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
             </a>
             <ul class="nav-links">
-                <!-- REDIRECCIONES A INDEX.HTML -->
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="paquetes.html">Paquetes</a></li>
                 <li><a href="index.html#portafolio">Portafolio</a></li>
                 <li><a href="contacto.html" style="color: var(--accent-orange);">Contacto</a></li>
             </ul>
@@ -430,7 +387,7 @@
         <div class="container">
             <div class="contact-grid">
                 
-                <!-- INFORMACIÓN DE CONTACTO -->
+                <!-- INFORMACIÓN -->
                 <div class="info-card">
                     <h3>Canales Directos</h3>
                     
@@ -458,7 +415,6 @@
                         </div>
                     </div>
 
-                    <!-- BANNER DIRECTO A WHATSAPP -->
                     <div class="whatsapp-banner">
                         <h4>¿Prefieres respuesta inmediata?</h4>
                         <p>Escríbenos directamente a WhatsApp y te atenderemos en minutos.</p>
@@ -468,13 +424,12 @@
                     </div>
                 </div>
 
-                <!-- FORMULARIO DE CONTACTO -->
+                <!-- FORMULARIO -->
                 <div class="form-card">
                     <h3>Envíanos un mensaje</h3>
                     <p>Completa el formulario y nos pondremos en contacto en menos de 24 horas.</p>
 
                     <form action="https://formsubmit.co/info@jbmsmm.com" method="POST">
-                        <!-- Configuración automática para envío de correo -->
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="📩 Nuevo mensaje desde la Web de JBM Media">
 
@@ -523,31 +478,6 @@
         </div>
     </section>
 
-    <!-- FREQUENTLY ASKED QUESTIONS -->
-    <section class="faq-section">
-        <div class="container">
-            <h2 class="faq-title">Preguntas Frecuentes</h2>
-            <div class="faq-grid">
-                <div class="faq-card">
-                    <h4>¿Cómo es el proceso inicial de trabajo?</h4>
-                    <p>Agendamos una breve reunión o llamada para entender tu negocio, analizamos tu presencia actual y te presentamos una propuesta estratégica ajustada a tus objetivos.</p>
-                </div>
-                <div class="faq-card">
-                    <h4>¿Ofrecen planes a la medida?</h4>
-                    <p>Sí. Aunque tenemos paquetes estandarizados de Social Media y Creación de Contenido, adaptamos los entregables según la fase en la que se encuentre tu marca.</p>
-                </div>
-                <div class="faq-card">
-                    <h4>¿En qué sectores tienen experiencia?</h4>
-                    <p>Hemos trabajado exitosamente con marcas del sector gastronómico, hostelería, servicios médicos/estéticos, marcas personales y comerciales.</p>
-                </div>
-                <div class="faq-card">
-                    <h4>¿Con cuánta anticipación debo agendar?</h4>
-                    <p>Recomendamos iniciar el proceso de planificación con 1 o 2 semanas de anticipación para realizar el levantamiento de información y la estrategia de contenido.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
@@ -555,7 +485,6 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
     <script>
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
