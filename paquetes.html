@@ -113,10 +113,53 @@
             color: var(--primary-blue);
         }
 
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Botones de acción */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(245, 146, 73, 0.35);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Botón opcional exclusivo para móvil */
+        .btn-mobile-prices {
+            display: none;
+            background-color: rgba(56, 113, 184, 0.1);
+            color: var(--primary-blue);
+            border: 1px solid rgba(56, 113, 184, 0.3);
+            border-radius: 50px;
+            font-weight: 700;
+        }
+
         .navbar.scrolled {
             background-color: rgba(26, 70, 123, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .navbar.scrolled .nav-container {
@@ -130,6 +173,11 @@
 
         .navbar.scrolled .nav-links a {
             color: #FFFFFF;
+        }
+
+        .navbar.scrolled .btn-primary {
+            padding: 8px 16px;
+            font-size: 13px;
         }
 
         /* HERO HEADER */
@@ -393,6 +441,14 @@
             .flip-card { height: 460px; }
             .custom-banner { flex-direction: column; text-align: center; gap: 20px; }
             .nav-links { display: none; }
+
+            .nav-container { height: 65px; }
+            .brand-logo img { height: 70px; margin: 0; }
+
+            .nav-actions .btn-primary { 
+                font-size: 11px; 
+                padding: 7px 12px; 
+            }
         }
     </style>
 </head>
@@ -402,7 +458,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="brand-logo">
-                <img src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
+                <img id="main-logo" src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
@@ -411,6 +467,11 @@
                 <li><a href="index.html#portafolio">Portafolio</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
+
+            <!-- ACCIONES DEL HEADER (Mantiene CTA Agendar Asesoría en móvil) -->
+            <div class="nav-actions">
+                <a href="contacto.html" class="btn btn-primary">Agendar Asesoría</a>
+            </div>
         </div>
     </nav>
 
@@ -552,15 +613,34 @@
 
     <!-- SCRIPTS -->
     <script>
-        // Navbar cambio de color al scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 40) {
+        const navbar = document.querySelector('.navbar');
+        const logoImg = document.getElementById('main-logo');
+        
+        // URLs de los Logos
+        const defaultLogo = "https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz";
+        const whiteLogo = "https://lh3.googleusercontent.com/d/1MGDi2Pj3Pfm01IQtnaLCtCqAbn_V45s0";
+
+        function handleNavbarState() {
+            const isScrolled = window.scrollY > 40;
+            const isMobile = window.innerWidth <= 992;
+
+            if (isScrolled) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
+
+            // Cambiar logo si está scrolleado O si está en pantalla móvil
+            if (isScrolled || isMobile) {
+                logoImg.src = whiteLogo;
+            } else {
+                logoImg.src = defaultLogo;
+            }
+        }
+
+        window.addEventListener('scroll', handleNavbarState);
+        window.addEventListener('resize', handleNavbarState);
+        document.addEventListener('DOMContentLoaded', handleNavbarState);
     </script>
 </body>
 </html>
