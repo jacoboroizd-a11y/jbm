@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Paquetes y Planes | JBM Media - Social Media Management</title>
+    <title>Paquetes y Planes | JBM Media</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -119,7 +119,6 @@
             gap: 10px;
         }
 
-        /* Botones de acción */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -143,16 +142,6 @@
         .btn-primary:hover {
             background-color: var(--orange-hover);
             transform: translateY(-2px);
-        }
-
-        /* Botón opcional exclusivo para móvil */
-        .btn-mobile-prices {
-            display: none;
-            background-color: rgba(56, 113, 184, 0.1);
-            color: var(--primary-blue);
-            border: 1px solid rgba(56, 113, 184, 0.3);
-            border-radius: 50px;
-            font-weight: 700;
         }
 
         .navbar.scrolled {
@@ -184,7 +173,7 @@
         .packages-hero {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: #FFFFFF;
-            padding: 130px 0 60px;
+            padding: 130px 0 50px;
             text-align: center;
         }
 
@@ -201,26 +190,119 @@
             margin: 0 auto;
         }
 
-        /* PACKAGES GRID */
+        /* CATEGORIES TABS */
+        .category-tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--accent-orange);
+            border-color: var(--accent-orange);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(245, 146, 73, 0.3);
+        }
+
+        /* PRICING SECTION */
         .pricing-section {
-            padding: 60px 0 80px;
+            padding: 50px 0 80px;
+        }
+
+        .category-block {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .category-block.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark-blue);
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 15px;
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
+            justify-content: center;
             align-items: stretch;
         }
 
-        /* ---------------------------------------------------
-           FLIP CARD STYLES (EFECTO VOLTEO 3D)
-        --------------------------------------------------- */
+        /* CARRUSEL INFINITO EN CSS PURO */
+        .carousel-wrapper {
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+            position: relative;
+            /* Se desactiva la selección de texto para evitar fricciones en el scroll */
+            user-select: none;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+            animation: scrollInfinite 25s linear infinite;
+            will-change: transform;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .carousel-track .flip-card {
+            width: 300px;
+            flex-shrink: 0;
+        }
+
+        @keyframes scrollInfinite {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* FLIP CARD STYLES */
         .flip-card {
             background-color: transparent;
             width: 100%;
-            height: 480px;
-            perspective: 1000px; /* Perspectiva 3D */
+            height: 520px;
+            perspective: 1000px;
             cursor: pointer;
         }
 
@@ -233,7 +315,6 @@
             transform-style: preserve-3d;
         }
 
-        /* Efecto al pasar mouse o cuando tiene la clase 'flipped' (clic) */
         .flip-card:hover .flip-card-inner,
         .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
@@ -246,22 +327,45 @@
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             border-radius: 24px;
-            padding: 36px 28px;
+            padding: 32px 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: var(--shadow-sm);
+            
+            /* EFECTO GLOWING BASE EN LAS TARJETAS ESTÁNDAR */
+            border: 2px solid rgba(56, 113, 184, 0.5);
+            box-shadow: 0 0 15px rgba(56, 113, 184, 0.35),
+                        inset 0 0 10px rgba(56, 113, 184, 0.15);
+            transition: box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
-        /* PARTE FRONTAL */
+        /* EFECTO GLOWING AL PASAR EL MOUSE EN TARJETAS ESTÁNDAR */
+        .flip-card:hover .flip-card-front,
+        .flip-card:hover .flip-card-back {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 25px rgba(56, 113, 184, 0.8),
+                        0 0 10px rgba(56, 113, 184, 0.5),
+                        inset 0 0 12px rgba(56, 113, 184, 0.25);
+        }
+
         .flip-card-front {
             background-color: var(--bg-white);
-            border: 2px solid transparent;
         }
 
-        .flip-card.featured .flip-card-front {
+        /* EFECTO GLOWING NARANJA PARA TARJETAS DESTACADAS (FEATURED) */
+        .flip-card.featured .flip-card-front,
+        .flip-card.featured .flip-card-back {
             border-color: var(--accent-orange);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 0 18px rgba(245, 146, 73, 0.6),
+                        inset 0 0 10px rgba(245, 146, 73, 0.25);
+        }
+
+        .flip-card.featured:hover .flip-card-front,
+        .flip-card.featured:hover .flip-card-back {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 30px rgba(245, 146, 73, 0.9),
+                        0 0 12px rgba(245, 146, 73, 0.6),
+                        inset 0 0 15px rgba(245, 146, 73, 0.35);
         }
 
         .featured-badge {
@@ -281,30 +385,30 @@
         }
 
         .card-header h3 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .card-header p {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .features-list {
             list-style: none;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             flex-grow: 1;
         }
 
         .features-list li {
             font-size: 14px;
             color: var(--text-dark);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
         }
 
@@ -316,7 +420,7 @@
         }
 
         .flip-hint {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--primary-blue);
             text-align: center;
@@ -329,7 +433,6 @@
             gap: 6px;
         }
 
-        /* PARTE TRASERA (VOLTEADA) */
         .flip-card-back {
             background: linear-gradient(135deg, var(--dark-blue) 0%, #0F2B48 100%);
             color: #FFFFFF;
@@ -437,18 +540,12 @@
 
         /* RESPONSIVE */
         @media (max-width: 992px) {
-            .pricing-grid { grid-template-columns: 1fr; gap: 30px; }
-            .flip-card { height: 460px; }
+            .flip-card { height: 500px; }
             .custom-banner { flex-direction: column; text-align: center; gap: 20px; }
             .nav-links { display: none; }
-
             .nav-container { height: 65px; }
             .brand-logo img { height: 70px; margin: 0; }
-
-            .nav-actions .btn-primary { 
-                font-size: 11px; 
-                padding: 7px 12px; 
-            }
+            .nav-actions .btn-primary { font-size: 11px; padding: 7px 12px; }
         }
     </style>
 </head>
@@ -468,139 +565,467 @@
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
 
-            <!-- ACCIONES DEL HEADER (Mantiene CTA Agendar Asesoría en móvil) -->
             <div class="nav-actions">
                 <a href="contacto.html" class="btn btn-primary">Agendar Asesoría</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO HEADER -->
+    <!-- HERO HEADER WITH CATEGORY TABS -->
     <section class="packages-hero">
         <div class="container">
-            <h1>Nuestros Paquetes y Planes</h1>
-            <p>Pasa el cursor o toca cada tarjeta para descubrir la inversión y detalles de cada plan.</p>
+            <h1>Nuestros Servicios y Tarifas</h1>
+            <p>Selecciona una categoría para explorar nuestros planes diseñados a la medida de tu marca.</p>
+            
+            <div class="category-tabs-container">
+                <button class="tab-btn active" onclick="switchTab('smm', this)">Social Media Management</button>
+                <button class="tab-btn" onclick="switchTab('branding', this)">Branding</button>
+                <button class="tab-btn" onclick="switchTab('asesoria', this)">Asesorías</button>
+                <button class="tab-btn" onclick="switchTab('contenido', this)">Creación de Contenido</button>
+            </div>
         </div>
     </section>
 
     <!-- PRICING CARDS SECTION -->
     <section class="pricing-section">
         <div class="container">
-            <div class="pricing-grid">
+            
+            <!-- CATEGORÍA 1: SOCIAL MEDIA MANAGEMENT -->
+            <div id="smm" class="category-block active">
+                <div class="section-title">
+                    <h2>Social Media Management (Instagram)</h2>
+                    <p>Incluye Estrategia, Planificación, Diseño, Copywriting, Edición de reels, Programación, Publicación y Análisis de métricas.</p>
+                </div>
+                <div class="pricing-grid">
+                    
+                    <!-- CRECE -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div>
+                                    <div class="card-header">
+                                        <h3>Paquete Crece</h3>
+                                        <p>Presencia constante para tu marca.</p>
+                                    </div>
+                                    <ul class="features-list">
+                                        <li>8 Publicaciones</li>
+                                        <li>2 Reels editados</li>
+                                        <li>8 Historias</li>
+                                        <li>Estrategia y Planificación</li>
+                                        <li>Diseño gráfico y Copywriting</li>
+                                        <li>Análisis de métricas</li>
+                                    </ul>
+                                </div>
+                                <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Paquete Crece</h3>
+                                <div class="price-tag">$135 <span>/ mes</span></div>
+                                <p class="price-description">Gestión básica inicial para activar y sostener tu perfil.</p>
+                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POTENCIA -->
+                    <div class="flip-card featured" onclick="this.classList.toggle('flipped')">
+                        <div class="featured-badge">Más Popular</div>
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div>
+                                    <div class="card-header">
+                                        <h3>Paquete Potencia</h3>
+                                        <p>Estrategia activa y mayor interacción.</p>
+                                    </div>
+                                    <ul class="features-list">
+                                        <li>12 Publicaciones</li>
+                                        <li>4 Reels editados</li>
+                                        <li>12 Historias</li>
+                                        <li>Interacción básica en comentarios</li>
+                                        <li>Estrategia y Planificación</li>
+                                        <li>Análisis de métricas</li>
+                                    </ul>
+                                </div>
+                                <div class="flip-hint" style="background-color: #FFF3EB; color: var(--accent-orange);">🔄 Toca o pasa el mouse para ver precio</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Paquete Potencia</h3>
+                                <div class="price-tag">$195 <span>/ mes</span></div>
+                                <p class="price-description">La mejor opción para aumentar alcance e interactuar con tu comunidad.</p>
+                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IMPACTO -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div>
+                                    <div class="card-header">
+                                        <h3>Paquete Impacto</h3>
+                                        <p>Cobertura intensiva de alto nivel.</p>
+                                    </div>
+                                    <ul class="features-list">
+                                        <li>20 Publicaciones</li>
+                                        <li>6 Reels editados</li>
+                                        <li>20 Historias</li>
+                                        <li>Interacción básica en comentarios</li>
+                                        <li>Estrategia y Planificación premium</li>
+                                        <li>Análisis de métricas mensual</li>
+                                    </ul>
+                                </div>
+                                <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Paquete Impacto</h3>
+                                <div class="price-tag">$245 <span>/ mes</span></div>
+                                <p class="price-description">Dominio visual e interacción constante en tu nicho.</p>
+                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 2: BRANDING -->
+            <div id="branding" class="category-block">
+                <div class="section-title">
+                    <h2>Diseño de Identidad y Branding</h2>
+                    <p>Construcción visual sólida y profesional para definir la esencia de tu negocio.</p>
+                </div>
+                <div class="pricing-grid">
+                    
+                    <!-- BRANDING ESENCIA -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div>
+                                    <div class="card-header">
+                                        <h3>Branding Esencia</h3>
+                                        <p>Fundamentos visuales claves para tu marca.</p>
+                                    </div>
+                                    <ul class="features-list">
+                                        <li>Concepto de marca</li>
+                                        <li>Propuesta de logo</li>
+                                        <li>Paleta de colores</li>
+                                        <li>Tipografías seleccionadas</li>
+                                        <li>Elementos gráficos y Moodboard</li>
+                                        <li>Manual de marca básico</li>
+                                    </ul>
+                                </div>
+                                <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Branding Esencia</h3>
+                                <div class="price-tag">$165</div>
+                                <p class="price-description">Ideal para marcas nuevas que necesitan un lanzamiento impecable.</p>
+                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BRANDING COMPLETA -->
+                    <div class="flip-card featured" onclick="this.classList.toggle('flipped')">
+                        <div class="featured-badge">Recomendado</div>
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div>
+                                    <div class="card-header">
+                                        <h3>Branding Completa</h3>
+                                        <p>Identidad 360° con aplicaciones reales.</p>
+                                    </div>
+                                    <ul class="features-list">
+                                        <li>Concepto, Logo y Paleta de colores</li>
+                                        <li>Tipografías y Elementos gráficos</li>
+                                        <li>Moodboard y Aplicación de marca</li>
+                                        <li>Highlights para Instagram</li>
+                                        <li>Diseño de Thank You Cards</li>
+                                        <li>Manual de marca completo</li>
+                                    </ul>
+                                </div>
+                                <div class="flip-hint" style="background-color: #FFF3EB; color: var(--accent-orange);">🔄 Toca o pasa el mouse para ver precio</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Branding Completa</h3>
+                                <div class="price-tag">$235</div>
+                                <p class="price-description">Ecosistema visual integral con elementos impresos y digitales.</p>
+                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 3: ASESORÍA -->
+            <div id="asesoria" class="category-block">
+                <div class="section-title">
+                    <h2>Asesoría Estratégica</h2>
+                    <p>Orientación directa para marcas que prefieren gestionar su comunidad de manera interna.</p>
+                </div>
+                <div class="pricing-grid">
+                    
+                    <!-- ASESORIA -->
+                    <div class="flip-card featured" style="max-width: 450px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div>
+                                    <div class="card-header">
+                                        <h3>Asesoría de Marca</h3>
+                                        <p>Acompañamiento uno a uno para escalar orgánicamente.</p>
+                                    </div>
+                                    <ul class="features-list">
+                                        <li>Sesión inicial de 1 hora</li>
+                                        <li>Diagnóstico completo de marca</li>
+                                        <li>Guía personalizada y recomendaciones</li>
+                                        <li>Mini calendario de contenido</li>
+                                        <li>Estrategia para crecimiento orgánico</li>
+                                        <li>Tips para presencia digital</li>
+                                    </ul>
+                                </div>
+                                <div class="flip-hint" style="background-color: #FFF3EB; color: var(--accent-orange);">🔄 Toca o pasa el mouse para ver precio</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Asesoría de Marca</h3>
+                                <div class="price-tag">$140</div>
+                                <p class="price-description">Sesión estratégica para clarificar tu rumbo digital y optimizar tu trabajo interno.</p>
+                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Agendar Asesoría</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 4: CREACIÓN DE CONTENIDO (CARRUSEL INFINITO CSS) -->
+            <div id="contenido" class="category-block">
+                <div class="section-title">
+                    <h2>Creación de Contenido Audiovisual</h2>
+                    <p>Fotografía y video profesional optimizados para redes sociales.</p>
+                </div>
                 
-                <!-- PAQUETE 1 -->
-                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <!-- FRENTE -->
-                        <div class="flip-card-front">
-                            <div>
-                                <div class="card-header">
-                                    <h3>Plan Básico</h3>
-                                    <p>Ideal para negocios que están arrancando y necesitan presencia activa.</p>
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        
+                        <!-- BLOQUE ORIGINAL (4 Tarjetas) -->
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div>
+                                        <div class="card-header">
+                                            <h3>Contenido Esencial</h3>
+                                            <p>Base fotográfica rápida.</p>
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>25 Fotos editadas</li>
+                                            <li>Entrega de archivo con todo el contenido</li>
+                                            <li>Edición y corrección de color</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
                                 </div>
-                                <ul class="features-list">
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Consectetur adipiscing elit</li>
-                                    <li>Integer nec odio praesent</li>
-                                    <li>Sed cursus ante dapibus</li>
-                                    <li>Gestión de 1 o 2 redes</li>
-                                </ul>
-                            </div>
-                            <div class="flip-hint">
-                                🔄 Toca o pasa el mouse para ver precio
+                                <div class="flip-card-back">
+                                    <h3>Contenido Esencial</h3>
+                                    <div class="price-tag">$110</div>
+                                    <p class="price-description">Galería fotográfica base lista para publicar.</p>
+                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                </div>
                             </div>
                         </div>
-                        <!-- ATRÁS -->
-                        <div class="flip-card-back">
-                            <h3>Plan Básico</h3>
-                            <div class="price-tag">
-                                $XX <span>/ mes</span>
+
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div>
+                                        <div class="card-header">
+                                            <h3>Contenido Plus</h3>
+                                            <p>Fotografía con apoyo dinámico.</p>
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>25 Fotos editadas</li>
+                                            <li>2 Reels editados</li>
+                                            <li>Entrega de archivo con todo el contenido</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>Contenido Plus</h3>
+                                    <div class="price-tag">$155</div>
+                                    <p class="price-description">Combinación ideal de formato estático y video dinámico.</p>
+                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                </div>
                             </div>
-                            <p class="price-description">Incluye toda la gestión básica inicial para tu negocio.</p>
-                            <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
                         </div>
+
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div>
+                                        <div class="card-header">
+                                            <h3>Contenido Creativo</h3>
+                                            <p>Variedad fotográfica y de video.</p>
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>35 Fotos editadas</li>
+                                            <li>3 Reels editados</li>
+                                            <li>Entrega de archivo con todo el contenido</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>Contenido Creativo</h3>
+                                    <div class="price-tag">$195</div>
+                                    <p class="price-description">Mayor volumen de material gráfico diversificado.</p>
+                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flip-card featured" onclick="this.classList.toggle('flipped')">
+                            <div class="featured-badge">Más Completo</div>
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div>
+                                        <div class="card-header">
+                                            <h3>Producción Completa</h3>
+                                            <p>Cobertura audiovisual intensiva.</p>
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>45 Fotos editadas</li>
+                                            <li>4 Reels editados</li>
+                                            <li>Entrega de archivo con todo el contenido</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flip-hint" style="background-color: #FFF3EB; color: var(--accent-orange);">🔄 Toca o pasa el mouse para ver precio</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>Producción Completa</h3>
+                                    <div class="price-tag">$245</div>
+                                    <p class="price-description">Banco de recursos visuales robusto para cubrir campañas completas.</p>
+                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BLOQUE CLONADO EXACTO (Para garantizar el bucle infinito al desplazarse al -50%) -->
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div>
+                                        <div class="card-header">
+                                            <h3>Contenido Esencial</h3>
+                                            <p>Base fotográfica rápida.</p>
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>25 Fotos editadas</li>
+                                            <li>Entrega de archivo con todo el contenido</li>
+                                            <li>Edición y corrección de color</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>Contenido Esencial</h3>
+                                    <div class="price-tag">$110</div>
+                                    <p class="price-description">Galería fotográfica base lista para publicar.</p>
+                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div>
+                                        <div class="card-header">
+                                            <h3>Contenido Plus</h3>
+                                            <p>Fotografía con apoyo dinámico.</p>
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>25 Fotos editadas</li>
+                                            <li>2 Reels editados</li>
+                                            <li>Entrega de archivo con todo el contenido</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>Contenido Plus</h3>
+                                    <div class="price-tag">$155</div>
+                                    <p class="price-description">Combinación ideal de formato estático y video dinámico.</p>
+                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div>
+                                        <div class="card-header">
+                                            <h3>Contenido Creativo</h3>
+                                            <p>Variedad fotográfica y de video.</p>
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>35 Fotos editadas</li>
+                                            <li>3 Reels editados</li>
+                                            <li>Entrega de archivo con todo el contenido</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flip-hint">🔄 Toca o pasa el mouse para ver precio</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>Contenido Creativo</h3>
+                                    <div class="price-tag">$195</div>
+                                    <p class="price-description">Mayor volumen de material gráfico diversificado.</p>
+                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flip-card featured" onclick="this.classList.toggle('flipped')">
+                            <div class="featured-badge">Más Completo</div>
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div>
+                                        <div class="card-header">
+                                            <h3>Producción Completa</h3>
+                                            <p>Cobertura audiovisual intensiva.</p>
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>45 Fotos editadas</li>
+                                            <li>4 Reels editados</li>
+                                            <li>Entrega de archivo con todo el contenido</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flip-hint" style="background-color: #FFF3EB; color: var(--accent-orange);">🔄 Toca o pasa el mouse para ver precio</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>Producción Completa</h3>
+                                    <div class="price-tag">$245</div>
+                                    <p class="price-description">Banco de recursos visuales robusto para cubrir campañas completas.</p>
+                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
-                <!-- PAQUETE 2 (DESTACADO) -->
-                <div class="flip-card featured" onclick="this.classList.toggle('flipped')">
-                    <div class="featured-badge">Más Popular</div>
-                    <div class="flip-card-inner">
-                        <!-- FRENTE -->
-                        <div class="flip-card-front">
-                            <div>
-                                <div class="card-header">
-                                    <h3>Plan Crecimiento</h3>
-                                    <p>Estrategia integral para impulsar ventas e interactuar con tu audiencia.</p>
-                                </div>
-                                <ul class="features-list">
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Consectetur adipiscing elit</li>
-                                    <li>Producción de Video & Reels</li>
-                                    <li>Diseño gráfico personalizado</li>
-                                    <li>Reporte de métricas mensual</li>
-                                </ul>
-                            </div>
-                            <div class="flip-hint" style="background-color: #FFF3EB; color: var(--accent-orange);">
-                                🔄 Toca o pasa el mouse para ver precio
-                            </div>
-                        </div>
-                        <!-- ATRÁS -->
-                        <div class="flip-card-back">
-                            <h3>Plan Crecimiento</h3>
-                            <div class="price-tag">
-                                $XX <span>/ mes</span>
-                            </div>
-                            <p class="price-description">La mejor opción valor/precio para escalar tu marca rápido.</p>
-                            <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PAQUETE 3 -->
-                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <!-- FRENTE -->
-                        <div class="flip-card-front">
-                            <div>
-                                <div class="card-header">
-                                    <h3>Plan Pro / Premium</h3>
-                                    <p>Cobertura completa de marca para escalar de forma acelerada.</p>
-                                </div>
-                                <ul class="features-list">
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Consectetur adipiscing elit</li>
-                                    <li>Sesiones de fotos / video in situ</li>
-                                    <li>Estrategia publicitaria (Ads)</li>
-                                    <li>Atención prioritaria 24/7</li>
-                                </ul>
-                            </div>
-                            <div class="flip-hint">
-                                🔄 Toca o pasa el mouse para ver precio
-                            </div>
-                        </div>
-                        <!-- ATRÁS -->
-                        <div class="flip-card-back">
-                            <h3>Plan Pro / Premium</h3>
-                            <div class="price-tag">
-                                $XX <span>/ mes</span>
-                            </div>
-                            <p class="price-description">Acompañamiento 360° con creación de contenido profesional.</p>
-                            <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <!-- PERSONALIZADO BANNER -->
             <div class="custom-banner">
                 <div class="custom-banner-content">
-                    <h3>¿Necesitas una solución a la medida?</h3>
-                    <p>Podemos armar un paquete personalizado ajustado a los requerimientos específicos de tu empresa.</p>
+                    <h3>¿Necesitas combinar varios servicios o un paquete a la medida?</h3>
+                    <p>Podemos armar una propuesta personalizada según las necesidades exactas de tu empresa.</p>
                 </div>
                 <a href="contacto.html" class="btn-custom">Cotizar a la Medida</a>
             </div>
+
         </div>
     </section>
 
@@ -613,10 +1038,10 @@
 
     <!-- SCRIPTS -->
     <script>
+        // Lógica de Scroll y Navbar
         const navbar = document.querySelector('.navbar');
         const logoImg = document.getElementById('main-logo');
         
-        // URLs de los Logos
         const defaultLogo = "https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz";
         const whiteLogo = "https://lh3.googleusercontent.com/d/1MGDi2Pj3Pfm01IQtnaLCtCqAbn_V45s0";
 
@@ -630,12 +1055,23 @@
                 navbar.classList.remove('scrolled');
             }
 
-            // Cambiar logo si está scrolleado O si está en pantalla móvil
             if (isScrolled || isMobile) {
                 logoImg.src = whiteLogo;
             } else {
                 logoImg.src = defaultLogo;
             }
+        }
+
+        // Lógica para cambiar entre pestañas (Tabs)
+        function switchTab(categoryId, element) {
+            const blocks = document.querySelectorAll('.category-block');
+            blocks.forEach(block => block.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(categoryId).classList.add('active');
+            element.classList.add('active');
         }
 
         window.addEventListener('scroll', handleNavbarState);
