@@ -252,6 +252,427 @@
             box-shadow: 0 0 0 3px rgba(56, 113, 184, 0.15);
         }
 
+        /* ESTILO PARA ALERTA DE PLAN SELECCIONADO */
+        .plan-selected-alert {
+            display: none;
+            background-color: var(--soft-cream);
+            border: 1.5px solid var(--accent-orange);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .plan-selected-alert span {
+            color: var(--accent-orange);
+            font-weight: 800;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #0F172A;
+            color: #94A3B8;
+            padding: 30px 0;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .nav-container { height: 65px; }
+            .brand-logo img { height: 70px; margin: 0; }
+            .btn-primary { font-size: 12px; padding: 8px 16px; }
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper { grid-template-columns: 1fr; gap: 24px; }
+            .contact-info-card, .form-card { padding: 24px; }
+            .page-header h1 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <img id="main-logo" src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="paquetes.html">Paquetes</a></li>
+                <li><a href="index.html#portafolio">Portafolio</a></li>
+                <li><a href="contacto.html" style="color: var(--accent-orange);">Contacto</a></li>
+            </ul>
+            <a href="contacto.html" class="btn btn-primary">Agendar Asesoría</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Hablemos de tu Proyecto</h1>
+            <p>Escríbenos y diseñemos juntos la estrategia digital para tu marca.</p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTACT SECTION -->
+    <main class="container">
+        <div class="contact-wrapper">
+            
+            <!-- DATOS DE CONTACTO -->
+            <div class="contact-info-card">
+                <h3>Contacto Directo</h3>
+                <p>¿Prefieres una atención inmediata? Puedes comunicarte con nosotros por cualquiera de estos medios:</p>
+                
+                <div class="info-list">
+                    <a href="https://wa.me/50576977617" target="_blank" class="info-item">
+                        <span>📱</span> +505 7697-7617
+                    </a>
+                    <a href="mailto:info@jbmsmm.com" class="info-item">
+                        <span>✉️</span> info@jbmsmm.com
+                    </a>
+                    <a href="https://www.instagram.com/jbmmedia_/" target="_blank" class="info-item">
+                        <span>📷</span> @jbmmedia_
+                    </a>
+                </div>
+            </div>
+
+            <!-- FORMULARIO DE FORMSUBMIT -->
+            <div class="form-card">
+                
+                <!-- ALERTA DE PLAN SELECCIONADO (Aparece automáticamente si viene de paquetes.html) -->
+                <div id="planAlert" class="plan-selected-alert">
+                    📌 Has seleccionado el plan: <span id="planNameText"></span>
+                </div>
+
+                <form action="https://formsubmit.co/info@jbmsmm.com" method="POST">
+                    
+                    <!-- CONFIGURACIÓN DE REDIRECCIÓN Y CAPTCHA -->
+                    <input type="hidden" name="_next" value="https://www.jbmsmm.com/">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <!-- CAMPO OCULTO QUE RECIBE EL PLAN PARA FORMSUBMIT -->
+                    <input type="hidden" id="planInputHidden" name="Plan_Seleccionado" value="General">
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="Nombre" placeholder="Tu nombre o el de tu negocio" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="Correo" placeholder="tu@correo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono / WhatsApp</label>
+                        <input type="tel" id="telefono" name="Telefono" placeholder="+505 0000 0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">¿En qué podemos ayudarte?</label>
+                        <textarea id="mensaje" name="Mensaje" rows="5" placeholder="Cuéntanos brevemente sobre tu marca y tus objetivos..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 16px;">
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 JBM Media — Social Media Management. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- LOGO DYNAMIC SWAP, NAVBAR SCROLL & PARÁMETROS URL -->
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const logoImg = document.getElementById('main-logo');
+        
+        const defaultLogo = "https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz";
+        const whiteLogo = "https://lh3.googleusercontent.com/d/1MGDi2Pj3Pfm01IQtnaLCtCqAbn_V45s0";
+
+        function handleNavbarState() {
+            const isScrolled = window.scrollY > 40;
+            const isMobile = window.innerWidth <= 992;
+
+            if (isScrolled) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            if (isScrolled || isMobile) {
+                logoImg.src = whiteLogo;
+            } else {
+                logoImg.src = defaultLogo;
+            }
+        }
+
+        // Detección automática del plan seleccionado desde la URL
+        function checkPlanQueryParam() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const plan = urlParams.get('plan');
+
+            if (plan) {
+                const planAlert = document.getElementById('planAlert');
+                const planNameText = document.getElementById('planNameText');
+                const mensajeArea = document.getElementById('mensaje');
+                const planInputHidden = document.getElementById('planInputHidden');
+
+                // Mostrar el aviso visual sobre el formulario
+                planNameText.textContent = plan;
+                planAlert.style.display = 'block';
+
+                // Asignar el valor al campo oculto para el correo
+                if (planInputHidden) {
+                    planInputHidden.value = plan;
+                }
+
+                // Escribir un mensaje por defecto en el Textarea
+                if (mensajeArea && !mensajeArea.value) {
+                    mensajeArea.value = `¡Hola! Me gustaría contratar/recibir información sobre el plan: ${plan}.`;
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleNavbarState);
+        window.addEventListener('resize', handleNavbarState);
+        document.addEventListener('DOMContentLoaded', () => {
+            handleNavbarState();
+            checkPlanQueryParam();
+        });
+    </script>
+</body>
+</html>            max-width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--sand-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease-in-out;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            transition: height 0.3s ease;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .brand-logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            margin: -20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(26, 70, 123, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar.scrolled .nav-container { height: 60px; }
+        .navbar.scrolled .brand-logo img { height: 70px; margin: -5px 0; }
+        .navbar.scrolled .nav-links a { color: #FFFFFF; font-size: 14px; }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(245, 146, 73, 0.35);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange-hover);
+            transform: translateY(-2px);
+        }
+
+        /* HEADER SECTION */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: #FFFFFF;
+            padding: 140px 0 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: #E2E8F0;
+        }
+
+        /* FORM & CONTACT CONTAINER */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .contact-info-card {
+            background: var(--bg-white);
+            padding: 36px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            height: fit-content;
+        }
+
+        .contact-info-card h3 {
+            font-size: 22px;
+            color: var(--dark-blue);
+            margin-bottom: 16px;
+        }
+
+        .contact-info-card p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-card {
+            background: var(--bg-white);
+            padding: 36px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-dark);
+            background-color: #F8FAFC;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(56, 113, 184, 0.15);
+        }
+
         /* FOOTER */
         .footer {
             background-color: #0F172A;
