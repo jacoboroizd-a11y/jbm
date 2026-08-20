@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Contacto | JBM Media - Social Media Management</title>
+    <title>JBM Media | Social Media Management & Estrategia Digital</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +51,6 @@
             color: inherit;
         }
 
-        /* CONTAINER */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -59,7 +58,7 @@
             padding: 0 20px;
         }
 
-        /* NAVIGATION BAR */
+        /* NAVBAR */
         .navbar {
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
@@ -79,6 +78,13 @@
             align-items: center;
             height: 80px;
             transition: height 0.3s ease;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            cursor: pointer;
         }
 
         .brand-logo img {
@@ -111,6 +117,7 @@
             background-color: rgba(26, 70, 123, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .navbar.scrolled .nav-container {
@@ -124,253 +131,355 @@
 
         .navbar.scrolled .nav-links a {
             color: #FFFFFF;
+            font-size: 14px;
         }
 
-        /* HERO HEADER */
-        .contact-hero {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-            color: #FFFFFF;
-            padding: 130px 0 60px;
-            text-align: center;
+        .navbar.scrolled .btn-primary {
+            padding: 8px 16px;
+            font-size: 13px;
         }
 
-        .contact-hero h1 {
-            font-size: 40px;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .contact-hero p {
-            font-size: 16px;
-            color: #E2E8F0;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* CONTACT LAYOUT */
-        .contact-section {
-            padding: 60px 0 80px;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        /* INFO SIDEBAR */
-        .info-card {
-            background-color: var(--bg-white);
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid #E2E8F0;
-        }
-
-        .info-card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .info-icon {
-            width: 44px;
-            height: 44px;
-            background-color: #EFF6FF;
-            color: var(--primary-blue);
-            border-radius: 12px;
-            display: flex;
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .info-text h4 {
-            font-size: 14px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .info-text a, .info-text p {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .info-text a:hover {
-            color: var(--primary-blue);
-        }
-
-        .whatsapp-banner {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: #FFFFFF;
-            padding: 24px;
-            border-radius: 16px;
-            margin-top: 24px;
-            text-align: center;
-        }
-
-        .whatsapp-banner h4 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .whatsapp-banner p {
-            font-size: 13px;
-            margin-bottom: 16px;
-            opacity: 0.9;
-        }
-
-        .btn-whatsapp {
-            background-color: #FFFFFF;
-            color: #128C7E;
-            font-weight: 700;
-            padding: 10px 20px;
+            gap: 8px;
+            padding: 12px 24px;
             border-radius: 50px;
-            display: inline-block;
-            font-size: 14px;
-            transition: transform 0.2s;
-        }
-
-        .btn-whatsapp:hover {
-            transform: scale(1.03);
-        }
-
-        /* FORM STYLES */
-        .form-card {
-            background-color: var(--bg-white);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid #E2E8F0;
-        }
-
-        .form-card h3 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-        }
-
-        .form-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 28px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1.5px solid #E2E8F0;
-            border-radius: 10px;
             font-size: 15px;
-            font-family: inherit;
-            color: var(--text-dark);
-            background-color: #F8FAFC;
             transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
         }
 
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            background-color: #FFFFFF;
-            box-shadow: 0 0 0 4px rgba(56, 113, 184, 0.1);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .btn-submit {
-            width: 100%;
+        .btn-primary {
             background-color: var(--accent-orange);
             color: #FFFFFF;
-            font-weight: 700;
-            font-size: 16px;
-            padding: 16px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.25s ease;
             box-shadow: 0 4px 14px rgba(245, 146, 73, 0.35);
         }
 
-        .btn-submit:hover {
+        .btn-primary:hover {
             background-color: var(--orange-hover);
             transform: translateY(-2px);
         }
 
-        /* FAQ SECTION */
-        .faq-section {
-            padding: 40px 0 80px;
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
         }
 
-        .faq-title {
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: #FFFFFF;
+            padding: 140px 0 100px;
+            position: relative;
+            overflow: hidden;
             text-align: center;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 40px;
         }
 
-        .faq-grid {
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(245, 146, 73, 0.2);
+            border: 1px solid var(--accent-orange);
+            color: var(--soft-cream);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            color: var(--accent-orange);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #E2E8F0;
+            max-width: 680px;
+            margin: 0 auto 36px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* STATS */
+        .stats-section {
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background-color: var(--bg-white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card {
+            text-align: center;
+            border-right: 1px solid #F1F5F9;
+        }
+
+        .stat-card:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        .section-tag {
+            color: var(--accent-orange);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .section-description {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* NOSOTROS */
+        .dna-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
 
-        .faq-card {
+        .dna-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        .dna-card.accent {
+            border-top-color: var(--accent-orange);
+        }
+
+        .dna-icon {
+            width: 44px;
+            height: 44px;
+            background-color: #EFF6FF;
+            color: var(--primary-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .pilar-card {
             background-color: var(--bg-white);
-            padding: 24px;
+            padding: 24px 16px;
             border-radius: 16px;
-            border: 1px solid #E2E8F0;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
         }
 
-        .faq-card h4 {
+        .pilar-card h4 {
             font-size: 16px;
             font-weight: 700;
             color: var(--primary-blue);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        .faq-card p {
-            font-size: 14px;
+        .pilar-card p {
+            font-size: 12px;
             color: var(--text-muted);
         }
 
-        /* FOOTER */
+        /* PORTFOLIO */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            width: 100%;
+        }
+
+        .portfolio-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #E2E8F0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .portfolio-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: #FFFFFF;
+            padding: 20px;
+        }
+
+        .portfolio-category {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .portfolio-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-info p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .portfolio-info strong {
+            color: var(--text-dark);
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .tag {
+            background-color: var(--soft-cream);
+            color: var(--primary-blue);
+            border: 1px solid var(--light-blue);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        /* CTA & FOOTER */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-radius: 24px;
+            padding: 40px 20px;
+            color: #FFFFFF;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            font-size: 15px;
+            color: var(--soft-cream);
+            margin-bottom: 24px;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
         .footer {
             background-color: #0F172A;
             color: #94A3B8;
@@ -379,157 +488,233 @@
             text-align: center;
         }
 
-        /* RESPONSIVE MÓVIL */
+        /* MEDIA QUERIES MÓVIL */
         @media (max-width: 768px) {
-            .contact-hero h1 { font-size: 28px; }
-            .contact-grid { grid-template-columns: 1fr; gap: 24px; }
-            .form-row { grid-template-columns: 1fr; }
-            .form-card { padding: 24px 16px; }
-            .info-card { padding: 24px 16px; }
-            .faq-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 16px; }
+            .nav-container { height: 65px; }
+            .brand-logo img { height: 70px; margin: 0; }
             .nav-links { display: none; }
+            .btn-primary { font-size: 12px; padding: 8px 14px; }
+            .hero { padding: 110px 0 80px; }
+            .hero-title { font-size: 30px; }
+            .hero-subtitle { font-size: 15px; }
+            .hero-cta-group { flex-direction: column; width: 100%; }
+            .hero-cta-group .btn { width: 100%; }
+            .stats-grid { grid-template-columns: 1fr; gap: 16px; padding: 20px; }
+            .stat-card { border-right: none; border-bottom: 1px solid #F1F5F9; padding-bottom: 12px; }
+            .stat-card:last-child { border-bottom: none; padding-bottom: 0; }
+            .dna-grid { grid-template-columns: 1fr; }
+            .pilares-grid { grid-template-columns: repeat(2, 1fr); }
+            .portfolio-grid { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+            .portfolio-card { width: 100% !important; max-width: 100% !important; }
+            .portfolio-body { padding: 16px; }
+            .contact-methods { flex-direction: column; align-items: center; gap: 10px; }
+            .contact-item { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- NAVIGATION BAR -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="brand-logo">
+            <!-- LOGO: HACE CLIC Y LLEVA A INDEX.HTML -->
+            <a href="index.html" class="brand-logo">
                 <img src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
             </a>
+            
             <ul class="nav-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Portafolio</a></li>
-                <li><a href="#" style="color: var(--accent-orange);">Contacto</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
             </ul>
+
+            <!-- BOTÓN DE AGENDA: REDIRIGE A CONTACTO.HTML -->
+            <a href="contacto.html" class="btn btn-primary">Agendar Asesoría</a>
         </div>
     </nav>
 
-    <!-- HERO HEADER -->
-    <section class="contact-hero">
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
         <div class="container">
-            <h1>Hablemos de tu Proyecto</h1>
-            <p>Estamos listos para transformar la estrategia digital de tu negocio. Envíanos un mensaje o agenda una consulta directa.</p>
-        </div>
-    </section>
-
-    <!-- CONTACT MAIN SECTION -->
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-grid">
-                
-                <!-- INFORMACIÓN DE CONTACTO -->
-                <div class="info-card">
-                    <h3>Canales Directos</h3>
-                    
-                    <div class="info-item">
-                        <div class="info-icon">📱</div>
-                        <div class="info-text">
-                            <h4>Teléfono / WhatsApp</h4>
-                            <a href="https://wa.me/50576977617" target="_blank">+505 7697-7617</a>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">✉️</div>
-                        <div class="info-text">
-                            <h4>Correo Electrónico</h4>
-                            <a href="mailto:info@jbmsmm.com">info@jbmsmm.com</a>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">📷</div>
-                        <div class="info-text">
-                            <h4>Instagram</h4>
-                            <a href="https://www.instagram.com/jbmmedia_/" target="_blank">@jbmmedia_</a>
-                        </div>
-                    </div>
-
-                    <!-- BANNER DIRECTO A WHATSAPP -->
-                    <div class="whatsapp-banner">
-                        <h4>¿Prefieres respuesta inmediata?</h4>
-                        <p>Escríbenos directamente a WhatsApp y te atenderemos en minutos.</p>
-                        <a href="https://wa.me/50576977617" target="_blank" class="btn-whatsapp">
-                            Chatear por WhatsApp
-                        </a>
-                    </div>
-                </div>
-
-                <!-- FORMULARIO DE CONTACTO -->
-                <div class="form-card">
-                    <h3>Envíanos un mensaje</h3>
-                    <p>Completa el formulario y nos pondremos en contacto en menos de 24 horas.</p>
-
-                    <form action="mailto:info@jbmsmm.com" method="post" enctype="text/plain">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="nombre">Nombre Completo *</label>
-                                <input type="text" id="nombre" name="Nombre" class="form-control" placeholder="Ej. Carlos Mendoza" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="empresa">Empresa / Negocio</label>
-                                <input type="text" id="empresa" name="Empresa" class="form-control" placeholder="Ej. Mi Restaurante">
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Correo Electrónico *</label>
-                                <input type="email" id="email" name="Email" class="form-control" placeholder="tu@email.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="telefono">WhatsApp / Teléfono *</label>
-                                <input type="tel" id="telefono" name="Telefono" class="form-control" placeholder="+505 8888-8888" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="servicio">Servicio de Interés</label>
-                            <select id="servicio" name="Servicio" class="form-control">
-                                <option value="Social Media Management">Gestión de Redes Sociales (Social Media)</option>
-                                <option value="Produccion Audiovisual">Producción de Video & Reels</option>
-                                <option value="Branding e Identidad">Branding & Diseño de Marca</option>
-                                <option value="Asesoria Estrategica">Asesoría / Consultoría Digital</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mensaje">¿En qué podemos ayudarte?</label>
-                            <textarea id="mensaje" name="Mensaje" class="form-control" placeholder="Cuéntanos brevemente sobre tus objetivos actuales o tu negocio..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-submit">Enviar Mensaje</button>
-                    </form>
-                </div>
-
+            <span class="hero-badge">Social Media Management & Branding</span>
+            <h1 class="hero-title">Creamos con estrategia.<br><span>Crecemos con resultados.</span></h1>
+            <p class="hero-subtitle">Transformamos la presencia digital de empresas y marcas personales con contenido audiovisual que conecta, fideliza y vende.</p>
+            <div class="hero-cta-group">
+                <a href="#portafolio" class="btn btn-primary">Ver Casos de Éxito</a>
+                <a href="#nosotros" class="btn btn-secondary">Conocer la Agencia</a>
             </div>
         </div>
     </section>
 
-    <!-- FREQUENTLY ASKED QUESTIONS -->
-    <section class="faq-section">
+    <!-- STATS -->
+    <section class="stats-section">
         <div class="container">
-            <h2 class="faq-title">Preguntas Frecuentes</h2>
-            <div class="faq-grid">
-                <div class="faq-card">
-                    <h4>¿Cómo es el proceso inicial de trabajo?</h4>
-                    <p>Agendamos una breve reunión o llamada para entender tu negocio, analizamos tu presencia actual y te presentamos una propuesta estratégica ajustada a tus objetivos.</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">+220K</div>
+                    <div class="stat-label">Reproducciones en Video</div>
                 </div>
-                <div class="faq-card">
-                    <h4>¿Ofrecen planes a la medida?</h4>
-                    <p>Sí. Aunque tenemos paquetes estandarizados de Social Media y Creación de Contenido, adaptamos los entregables según la fase en la que se encuentre tu marca.</p>
+                <div class="stat-card">
+                    <div class="stat-number">+12.4K</div>
+                    <div class="stat-label">Seguidores en TikTok</div>
                 </div>
-                <div class="faq-card">
-                    <h4>¿En qué sectores tienen experiencia?</h4>
-                    <p>Hemos trabajado exitosamente con marcas del sector gastronómico, hostelería, servicios médicos/estéticos, marcas personales y comerciales.</p>
+                <div class="stat-card">
+                    <div class="stat-number">+230K</div>
+                    <div class="stat-label">Interacciones Totales</div>
                 </div>
-                <div class="faq-card">
-                    <h4>¿Con cuánta anticipación debo agendar?</h4>
-                    <p>Recomendamos iniciar el proceso de planificación con 1 o 2 semanas de anticipación para realizar el levantamiento de información y la estrategia de contenido.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="nosotros" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nuestra Identidad</span>
+                <h2 class="section-title">Construimos marcas memorables y rentables</h2>
+                <p class="section-description">Acompañamos a tu negocio en el entorno digital combinando la visión estratégica del marketing con la potencia del diseño visual.</p>
+            </div>
+
+            <div class="dna-grid">
+                <div class="dna-card">
+                    <div class="dna-icon">🎯</div>
+                    <h3>¿Quiénes Somos?</h3>
+                    <p>Somos una agencia de Social Media Management enfocada en construir una presencia digital profesional, estratégica y coherente para negocios y marcas personales.</p>
+                </div>
+                <div class="dna-card accent">
+                    <div class="dna-icon">💡</div>
+                    <h3>Propuesta de Valor</h3>
+                    <p>No solo buscamos que tus redes sociales se vean estéticas; diseñamos estrategias de contenido orientadas a generar confianza, comunidad y ventas reales.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px;">
+                <div class="section-header" style="margin-bottom: 24px;">
+                    <span class="section-tag">Metodología</span>
+                    <h3 style="font-size: 22px; font-weight: 700;">Nuestros Pilares de Trabajo</h3>
+                </div>
+                <div class="pilares-grid">
+                    <div class="pilar-card">
+                        <h4>Estrategia</h4>
+                        <p>Comunicación con intención, objetivos claros y métricas.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Creatividad</h4>
+                        <p>Diseño audiovisual disruptivo y formatos en tendencia.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Cercanía</h4>
+                        <p>Conexión orgánica y real con la audiencia objetivo.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Resultados</h4>
+                        <p>Crecimiento sostenible y retorno de inversión.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portafolio" class="section" style="background-color: rgba(255,255,255,0.6);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portafolio</span>
+                <h2 class="section-title">Casos de Éxito Destacados</h2>
+                <p class="section-description">Resultados reales generados para nuestros clientes mediante contenido orgánico y estrategia focalizada.</p>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <span class="portfolio-category">Gastronomía</span>
+                        <h3>Restaurantes</h3>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-info">
+                            <p><strong>Objetivo:</strong> Posicionar al restaurante con mayor presencia digital en León con contenido de alto impacto.</p>
+                            <p><strong>Estrategia:</strong> Videos cortos en tendencia, storytelling gastronómico y publicación constante.</p>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">+12.4K Seguidores</span>
+                            <span class="tag">+230K Me Gusta</span>
+                            <span class="tag">Videos +148K Vistas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-header" style="background: linear-gradient(135deg, #1A467B 0%, #3871B8 100%);">
+                        <span class="portfolio-category">Turismo & Hospedaje</span>
+                        <h3>Hostelería</h3>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-info">
+                            <p><strong>Objetivo:</strong> Aumentar el alcance orgánico y captar reservas mostrando la experiencia de la propiedad.</p>
+                            <p><strong>Estrategia:</strong> Recorridos de instalaciones y formato Reels/TikTok orientados a conversión.</p>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">220K+ Vistas en Reel</span>
+                            <span class="tag">58.9K+ Me Gusta</span>
+                            <span class="tag">Casi 4K Seguidores</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-header" style="background: linear-gradient(135deg, #779FBF 0%, #3871B8 100%);">
+                        <span class="portfolio-category">Medicina Estética</span>
+                        <h3>Medicina</h3>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-info">
+                            <p><strong>Objetivo:</strong> Posicionar a la especialista como referente profesional y agendar más consultas.</p>
+                            <p><strong>Estrategia:</strong> Contenido educativo, fotografía profesional y branding visual unificado en feed.</p>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">Branding de Feed</span>
+                            <span class="tag">Contenido Educativo</span>
+                            <span class="tag">Posicionamiento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-header" style="background: linear-gradient(135deg, #F59249 0%, #1A467B 100%);">
+                        <span class="portfolio-category">Branding & Diseño</span>
+                        <h3>Identidad Visual</h3>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-info">
+                            <p><strong>Objetivo:</strong> Construir una identidad de marca sólida, moderna y diferenciadora desde cero.</p>
+                            <p><strong>Estrategia:</strong> Desarrollo de logotipo, paleta cromática, tipografía corporativa y manual de marca comercial.</p>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">Diseño de Logo</span>
+                            <span class="tag">Manual de Marca</span>
+                            <span class="tag">Línea Gráfica</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-section">
+                <h2>¿Listo para impulsar el crecimiento de tu marca?</h2>
+                <p>Diseñemos una estrategia a la medida de tus objetivos comerciales.</p>
+                <a href="contacto.html" class="btn btn-primary" style="font-size: 15px; padding: 14px 28px;">
+                    Contactar Ahora
+                </a>
+                <div class="contact-methods">
+                    <a href="https://wa.me/50576977617" target="_blank" class="contact-item">📱 +505 7697-7617</a>
+                    <a href="mailto:info@jbmsmm.com" class="contact-item">✉️ info@jbmsmm.com</a>
+                    <a href="https://www.instagram.com/jbmmedia_/" target="_blank" class="contact-item">📷 @jbmmedia_</a>
                 </div>
             </div>
         </div>
@@ -542,11 +727,10 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
     <script>
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 40) {
+            if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
