@@ -79,6 +79,13 @@
             transition: height 0.3s ease;
         }
 
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            cursor: pointer;
+        }
+
         .brand-logo img {
             height: 120px;
             width: auto;
@@ -107,7 +114,9 @@
 
         .navbar.scrolled {
             background-color: rgba(26, 70, 123, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .navbar.scrolled .nav-container { height: 60px; }
@@ -252,8 +261,14 @@
             text-align: center;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .nav-links { display: none; }
+            .nav-container { height: 65px; }
+            .brand-logo img { height: 70px; margin: 0; }
+            .btn-primary { font-size: 12px; padding: 8px 16px; }
+        }
+
+        @media (max-width: 768px) {
             .contact-wrapper { grid-template-columns: 1fr; gap: 24px; }
             .contact-info-card, .form-card { padding: 24px; }
             .page-header h1 { font-size: 28px; }
@@ -266,14 +281,14 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="brand-logo">
-                <img src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
+                <img id="main-logo" src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="index.html#nosotros">Nosotros</a></li>
                 <li><a href="paquetes.html">Paquetes</a></li>
                 <li><a href="index.html#portafolio">Portafolio</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="contacto.html" style="color: var(--accent-orange);">Contacto</a></li>
             </ul>
             <a href="contacto.html" class="btn btn-primary">Agendar Asesoría</a>
         </div>
@@ -353,16 +368,36 @@
         </div>
     </footer>
 
-    <!-- NAVBAR SCROLL SCRIPT -->
+    <!-- LOGO DYNAMIC SWAP & NAVBAR SCROLL SCRIPT -->
     <script>
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
+        const navbar = document.querySelector('.navbar');
+        const logoImg = document.getElementById('main-logo');
+        
+        // URLs de los Logos
+        const defaultLogo = "https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz";
+        const whiteLogo = "https://lh3.googleusercontent.com/d/1MGDi2Pj3Pfm01IQtnaLCtCqAbn_V45s0";
+
+        function handleNavbarState() {
+            const isScrolled = window.scrollY > 40;
+            const isMobile = window.innerWidth <= 992;
+
+            if (isScrolled) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
+
+            // Cambia a logo blanco al hacer scroll o estar en resolución móvil
+            if (isScrolled || isMobile) {
+                logoImg.src = whiteLogo;
+            } else {
+                logoImg.src = defaultLogo;
+            }
+        }
+
+        window.addEventListener('scroll', handleNavbarState);
+        window.addEventListener('resize', handleNavbarState);
+        document.addEventListener('DOMContentLoaded', handleNavbarState);
     </script>
 </body>
 </html>
