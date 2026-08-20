@@ -24,6 +24,7 @@
             --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
             --shadow-lg: 0 20px 30px -10px rgba(56, 113, 184, 0.15);
+            --shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -32,11 +33,14 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         html, body {
             width: 100%;
             max-width: 100%;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         body {
@@ -56,6 +60,19 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* --- ANIMACIONES DE REVEAL EN SCROLL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* NAVIGATION BAR */
@@ -94,6 +111,10 @@
             transition: all 0.3s ease;
         }
 
+        .brand-logo:hover img {
+            transform: scale(1.05);
+        }
+
         .nav-links {
             display: flex;
             gap: 32px;
@@ -106,10 +127,26 @@
             font-weight: 600;
             color: var(--text-dark);
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
             color: var(--primary-blue);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-actions {
@@ -151,6 +188,10 @@
             font-size: 14px;
         }
 
+        .navbar.scrolled .nav-links a::after {
+            background-color: var(--accent-orange);
+        }
+
         .navbar.scrolled .btn-primary {
             padding: 8px 16px;
             font-size: 13px;
@@ -172,7 +213,7 @@
             border-radius: 50px;
             font-weight: 700;
             font-size: 15px;
-            transition: all 0.25s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             border: none;
             white-space: nowrap;
@@ -186,7 +227,8 @@
 
         .btn-primary:hover {
             background-color: var(--orange-hover);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(245, 146, 73, 0.45);
         }
 
         .btn-secondary {
@@ -194,6 +236,12 @@
             color: #FFFFFF;
             border: 1px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.6);
         }
 
         /* HERO SECTION */
@@ -218,6 +266,11 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-badge:hover {
+            transform: scale(1.05);
         }
 
         .hero-title {
@@ -263,11 +316,21 @@
             border-radius: 20px;
             padding: 30px;
             box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stats-grid:hover {
+            box-shadow: var(--shadow-hover);
         }
 
         .stat-card {
             text-align: center;
             border-right: 1px solid #F1F5F9;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
         }
 
         .stat-card:last-child {
@@ -322,7 +385,7 @@
             margin-top: 10px;
         }
 
-        /* ABOUT */
+        /* ABOUT / DNA */
         .dna-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -335,6 +398,12 @@
             border-radius: 20px;
             box-shadow: var(--shadow-sm);
             border-top: 5px solid var(--primary-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dna-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
         }
 
         .dna-card.accent {
@@ -352,6 +421,12 @@
             justify-content: center;
             font-size: 20px;
             margin-bottom: 16px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .dna-card:hover .dna-icon {
+            transform: scale(1.15) rotate(5deg);
+            background-color: rgba(56, 113, 184, 0.15);
         }
 
         .pilares-grid {
@@ -366,6 +441,12 @@
             border-radius: 16px;
             text-align: center;
             box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pilar-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: var(--shadow-md);
         }
 
         .pilar-card h4 {
@@ -398,12 +479,23 @@
             border: 1px solid #E2E8F0;
             width: 100%;
             box-sizing: border-box;
+            transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: var(--shadow-hover);
         }
 
         .portfolio-header {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: #FFFFFF;
             padding: 20px;
+            transition: filter 0.3s ease;
+        }
+
+        .portfolio-card:hover .portfolio-header {
+            filter: brightness(1.08);
         }
 
         .portfolio-category {
@@ -416,6 +508,12 @@
             border-radius: 20px;
             display: inline-block;
             margin-bottom: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .portfolio-card:hover .portfolio-category {
+            background-color: rgba(255, 255, 255, 0.35);
+            transform: scale(1.05);
         }
 
         .portfolio-header h3 {
@@ -459,6 +557,12 @@
             border-radius: 6px;
             white-space: normal;
             word-break: break-word;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .tag:hover {
+            transform: scale(1.08);
+            background-color: #FFF9A6;
         }
 
         /* CTA & CONTACT */
@@ -470,6 +574,12 @@
             text-align: center;
             box-shadow: var(--shadow-lg);
             margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 40px -10px rgba(56, 113, 184, 0.25);
         }
 
         .cta-section h2 {
@@ -501,6 +611,13 @@
             border-radius: 50px;
             font-size: 13px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px) scale(1.03);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         /* FOOTER */
@@ -577,7 +694,7 @@
 
     <!-- HERO SECTION -->
     <section id="inicio" class="hero">
-        <div class="container">
+        <div class="container reveal">
             <span class="hero-badge">Social Media Management & Branding</span>
             <h1 class="hero-title">Creamos con estrategia.<br><span>Crecemos con resultados.</span></h1>
             <p class="hero-subtitle">Transformamos la presencia digital de empresas y marcas personales con contenido audiovisual que conecta, fideliza y vende.</p>
@@ -590,7 +707,7 @@
 
     <!-- STATS HIGHLIGHTS -->
     <section class="stats-section">
-        <div class="container">
+        <div class="container reveal">
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number">+220K</div>
@@ -610,7 +727,7 @@
 
     <!-- ABOUT & BRAND ESSENCE -->
     <section id="nosotros" class="section">
-        <div class="container">
+        <div class="container reveal">
             <div class="section-header">
                 <span class="section-tag">Nuestra Identidad</span>
                 <h2 class="section-title">Construimos marcas memorables y rentables</h2>
@@ -631,7 +748,7 @@
             </div>
 
             <!-- PILARES -->
-            <div style="margin-top: 50px;">
+            <div style="margin-top: 50px;" class="reveal">
                 <div class="section-header" style="margin-bottom: 24px;">
                     <span class="section-tag">Metodología</span>
                     <h3 style="font-size: 22px; font-weight: 700;">Nuestros Pilares de Trabajo</h3>
@@ -660,7 +777,7 @@
 
     <!-- PORTFOLIO / CASOS DE ÉXITO -->
     <section id="portafolio" class="section" style="background-color: rgba(255,255,255,0.6);">
-        <div class="container">
+        <div class="container reveal">
             <div class="section-header">
                 <span class="section-tag">Portafolio</span>
                 <h2 class="section-title">Casos de Éxito Destacados</h2>
@@ -749,7 +866,7 @@
 
     <!-- CALL TO ACTION / CONTACT -->
     <section id="contacto" class="section">
-        <div class="container">
+        <div class="container reveal">
             <div class="cta-section">
                 <h2>¿Listo para impulsar el crecimiento de tu marca?</h2>
                 <p>Diseñemos una estrategia a la medida de tus objetivos comerciales.</p>
@@ -772,7 +889,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS DE CONTROL DE SCROLL Y MANEJO DE LOGO -->
+    <!-- SCRIPTS DE CONTROL DE SCROLL, REVEAL ANIMATIONS Y MANEJO DE LOGO -->
     <script>
         const navbar = document.querySelector('.navbar');
         const logoImg = document.getElementById('main-logo');
@@ -799,9 +916,32 @@
             }
         }
 
+        // --- ANIMACIÓN DE REVEAL EN SCROLL (IntersectionObserver) ---
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observerOptions = {
+                root: null,
+                threshold: 0.15
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target); // Se activa una sola vez
+                    }
+                });
+            }, observerOptions);
+
+            reveals.forEach(el => revealObserver.observe(el));
+        }
+
         window.addEventListener('scroll', handleNavbarState);
         window.addEventListener('resize', handleNavbarState);
-        document.addEventListener('DOMContentLoaded', handleNavbarState);
+        document.addEventListener('DOMContentLoaded', () => {
+            handleNavbarState();
+            initScrollReveal();
+        });
     </script>
 </body>
 </html>
