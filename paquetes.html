@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Paquetes y Planes | JBM Media - Social Media Management</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #3871B8;
+            --dark-blue: #1A467B;
+            --accent-orange: #F59249;
+            --orange-hover: #E07A2E;
+            --light-blue: #779FBF;
+            --soft-cream: #FFFDD9;
+            --sand-bg: #F0E8DD;
+            --bg-white: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 30px -10px rgba(56, 113, 184, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--sand-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            transition: height 0.3s ease;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .brand-logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            margin: -20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(26, 70, 123, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar.scrolled .nav-container {
+            height: 60px;
+        }
+
+        .navbar.scrolled .brand-logo img {
+            height: 70px;
+            margin: -5px 0;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: #FFFFFF;
+        }
+
+        /* HERO HEADER */
+        .packages-hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: #FFFFFF;
+            padding: 130px 0 60px;
+            text-align: center;
+        }
+
+        .packages-hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .packages-hero p {
+            font-size: 16px;
+            color: #E2E8F0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* PACKAGES GRID */
+        .pricing-section {
+            padding: 60px 0 80px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        /* ---------------------------------------------------
+           FLIP CARD STYLES (EFECTO VOLTEO 3D)
+        --------------------------------------------------- */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 480px;
+            perspective: 1000px; /* Perspectiva 3D */
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        /* Efecto al pasar mouse o cuando tiene la clase 'flipped' (clic) */
+        .flip-card:hover .flip-card-inner,
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            padding: 36px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* PARTE FRONTAL */
+        .flip-card-front {
+            background-color: var(--bg-white);
+            border: 2px solid transparent;
+        }
+
+        .flip-card.featured .flip-card-front {
+            border-color: var(--accent-orange);
+            box-shadow: var(--shadow-md);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-orange);
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            z-index: 10;
+        }
+
+        .card-header h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .card-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--primary-blue);
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .flip-hint {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-align: center;
+            background-color: #EFF6FF;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* PARTE TRASERA (VOLTEADA) */
+        .flip-card-back {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #0F2B48 100%);
+            color: #FFFFFF;
+            transform: rotateY(180deg);
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .flip-card-back h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+
+        .price-tag {
+            font-size: 46px;
+            font-weight: 800;
+            color: var(--accent-orange);
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .price-tag span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #94A3B8;
+        }
+
+        .price-description {
+            font-size: 14px;
+            color: #E2E8F0;
+            max-width: 240px;
+        }
+
+        .btn-card-solid {
+            width: 100%;
+            background-color: var(--accent-orange);
+            color: #FFFFFF;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(245, 146, 73, 0.4);
+            display: inline-block;
+        }
+
+        .btn-card-solid:hover {
+            background-color: var(--orange-hover);
+            transform: translateY(-2px);
+        }
+
+        /* CUSTOM BANNER */
+        .custom-banner {
+            background-color: var(--bg-white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #E2E8F0;
+        }
+
+        .custom-banner-content h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .custom-banner-content p {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .btn-custom {
+            background-color: var(--primary-blue);
+            color: #FFFFFF;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #0F172A;
+            color: #94A3B8;
+            padding: 30px 0;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .pricing-grid { grid-template-columns: 1fr; gap: 30px; }
+            .flip-card { height: 460px; }
+            .custom-banner { flex-direction: column; text-align: center; gap: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="paquetes.html" style="color: var(--accent-orange);">Paquetes</a></li>
+                <li><a href="index.html#portafolio">Portafolio</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <section class="packages-hero">
+        <div class="container">
+            <h1>Nuestros Paquetes y Planes</h1>
+            <p>Pasa el cursor o toca cada tarjeta para descubrir la inversión y detalles de cada plan.</p>
+        </div>
+    </section>
+
+    <!-- PRICING CARDS SECTION -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-grid">
+                
+                <!-- PAQUETE 1 -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <!-- FRENTE -->
+                        <div class="flip-card-front">
+                            <div>
+                                <div class="card-header">
+                                    <h3>Plan Básico</h3>
+                                    <p>Ideal para negocios que están arrancando y necesitan presencia activa.</p>
+                                </div>
+                                <ul class="features-list">
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Consectetur adipiscing elit</li>
+                                    <li>Integer nec odio praesent</li>
+                                    <li>Sed cursus ante dapibus</li>
+                                    <li>Gestión de 1 o 2 redes</li>
+                                </ul>
+                            </div>
+                            <div class="flip-hint">
+                                🔄 Toca o pasa el mouse para ver precio
+                            </div>
+                        </div>
+                        <!-- ATRÁS -->
+                        <div class="flip-card-back">
+                            <h3>Plan Básico</h3>
+                            <div class="price-tag">
+                                $XX <span>/ mes</span>
+                            </div>
+                            <p class="price-description">Incluye toda la gestión básica inicial para tu negocio.</p>
+                            <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAQUETE 2 (DESTACADO) -->
+                <div class="flip-card featured" onclick="this.classList.toggle('flipped')">
+                    <div class="featured-badge">Más Popular</div>
+                    <div class="flip-card-inner">
+                        <!-- FRENTE -->
+                        <div class="flip-card-front">
+                            <div>
+                                <div class="card-header">
+                                    <h3>Plan Crecimiento</h3>
+                                    <p>Estrategia integral para impulsar ventas e interactuar con tu audiencia.</p>
+                                </div>
+                                <ul class="features-list">
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Consectetur adipiscing elit</li>
+                                    <li>Producción de Video & Reels</li>
+                                    <li>Diseño gráfico personalizado</li>
+                                    <li>Reporte de métricas mensual</li>
+                                </ul>
+                            </div>
+                            <div class="flip-hint" style="background-color: #FFF3EB; color: var(--accent-orange);">
+                                🔄 Toca o pasa el mouse para ver precio
+                            </div>
+                        </div>
+                        <!-- ATRÁS -->
+                        <div class="flip-card-back">
+                            <h3>Plan Crecimiento</h3>
+                            <div class="price-tag">
+                                $XX <span>/ mes</span>
+                            </div>
+                            <p class="price-description">La mejor opción valor/precio para escalar tu marca rápido.</p>
+                            <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAQUETE 3 -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <!-- FRENTE -->
+                        <div class="flip-card-front">
+                            <div>
+                                <div class="card-header">
+                                    <h3>Plan Pro / Premium</h3>
+                                    <p>Cobertura completa de marca para escalar de forma acelerada.</p>
+                                </div>
+                                <ul class="features-list">
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Consectetur adipiscing elit</li>
+                                    <li>Sesiones de fotos / video in situ</li>
+                                    <li>Estrategia publicitaria (Ads)</li>
+                                    <li>Atención prioritaria 24/7</li>
+                                </ul>
+                            </div>
+                            <div class="flip-hint">
+                                🔄 Toca o pasa el mouse para ver precio
+                            </div>
+                        </div>
+                        <!-- ATRÁS -->
+                        <div class="flip-card-back">
+                            <h3>Plan Pro / Premium</h3>
+                            <div class="price-tag">
+                                $XX <span>/ mes</span>
+                            </div>
+                            <p class="price-description">Acompañamiento 360° con creación de contenido profesional.</p>
+                            <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PERSONALIZADO BANNER -->
+            <div class="custom-banner">
+                <div class="custom-banner-content">
+                    <h3>¿Necesitas una solución a la medida?</h3>
+                    <p>Podemos armar un paquete personalizado ajustado a los requerimientos específicos de tu empresa.</p>
+                </div>
+                <a href="contacto.html" class="btn-custom">Cotizar a la Medida</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 JBM Media — Social Media Management. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Navbar cambio de color al scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
