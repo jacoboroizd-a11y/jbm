@@ -267,7 +267,6 @@
             overflow: hidden;
             padding: 20px 0;
             position: relative;
-            /* Se desactiva la selección de texto para evitar fricciones en el scroll */
             user-select: none;
         }
 
@@ -331,15 +330,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            
-            /* EFECTO GLOWING BASE EN LAS TARJETAS ESTÁNDAR */
             border: 2px solid rgba(56, 113, 184, 0.5);
             box-shadow: 0 0 15px rgba(56, 113, 184, 0.35),
                         inset 0 0 10px rgba(56, 113, 184, 0.15);
             transition: box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
-        /* EFECTO GLOWING AL PASAR EL MOUSE EN TARJETAS ESTÁNDAR */
         .flip-card:hover .flip-card-front,
         .flip-card:hover .flip-card-back {
             border-color: var(--primary-blue);
@@ -352,7 +348,6 @@
             background-color: var(--bg-white);
         }
 
-        /* EFECTO GLOWING NARANJA PARA TARJETAS DESTACADAS (FEATURED) */
         .flip-card.featured .flip-card-front,
         .flip-card.featured .flip-card-back {
             border-color: var(--accent-orange);
@@ -622,7 +617,7 @@
                                 <h3>Paquete Crece</h3>
                                 <div class="price-tag">$135 <span>/ mes</span></div>
                                 <p class="price-description">Gestión básica inicial para activar y sostener tu perfil.</p>
-                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                                <a href="contacto.html?plan=Paquete%20Crece" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
                             </div>
                         </div>
                     </div>
@@ -652,7 +647,7 @@
                                 <h3>Paquete Potencia</h3>
                                 <div class="price-tag">$195 <span>/ mes</span></div>
                                 <p class="price-description">La mejor opción para aumentar alcance e interactuar con tu comunidad.</p>
-                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                                <a href="contacto.html?plan=Paquete%20Potencia" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
                             </div>
                         </div>
                     </div>
@@ -681,7 +676,7 @@
                                 <h3>Paquete Impacto</h3>
                                 <div class="price-tag">$245 <span>/ mes</span></div>
                                 <p class="price-description">Dominio visual e interacción constante en tu nicho.</p>
-                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
+                                <a href="contacto.html?plan=Paquete%20Impacto" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Plan</a>
                             </div>
                         </div>
                     </div>
@@ -721,7 +716,7 @@
                                 <h3>Branding Esencia</h3>
                                 <div class="price-tag">$165</div>
                                 <p class="price-description">Ideal para marcas nuevas que necesitan un lanzamiento impecable.</p>
-                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                <a href="contacto.html?plan=Branding%20Esencia" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                             </div>
                         </div>
                     </div>
@@ -751,7 +746,7 @@
                                 <h3>Branding Completa</h3>
                                 <div class="price-tag">$235</div>
                                 <p class="price-description">Ecosistema visual integral con elementos impresos y digitales.</p>
-                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                <a href="contacto.html?plan=Branding%20Completa" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                             </div>
                         </div>
                     </div>
@@ -791,7 +786,7 @@
                                 <h3>Asesoría de Marca</h3>
                                 <div class="price-tag">$140</div>
                                 <p class="price-description">Sesión estratégica para clarificar tu rumbo digital y optimizar tu trabajo interno.</p>
-                                <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Agendar Asesoría</a>
+                                <a href="contacto.html?plan=Asesoria%20de%20Marca" class="btn-card-solid" onclick="event.stopPropagation();">Agendar Asesoría</a>
                             </div>
                         </div>
                     </div>
@@ -830,7 +825,7 @@
                                     <h3>Contenido Esencial</h3>
                                     <div class="price-tag">$110</div>
                                     <p class="price-description">Galería fotográfica base lista para publicar.</p>
-                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                    <a href="contacto.html?plan=Contenido%20Esencial" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                                 </div>
                             </div>
                         </div>
@@ -855,7 +850,7 @@
                                     <h3>Contenido Plus</h3>
                                     <div class="price-tag">$155</div>
                                     <p class="price-description">Combinación ideal de formato estático y video dinámico.</p>
-                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                    <a href="contacto.html?plan=Contenido%20Plus" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                                 </div>
                             </div>
                         </div>
@@ -880,7 +875,7 @@
                                     <h3>Contenido Creativo</h3>
                                     <div class="price-tag">$195</div>
                                     <p class="price-description">Mayor volumen de material gráfico diversificado.</p>
-                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                    <a href="contacto.html?plan=Contenido%20Creativo" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                                 </div>
                             </div>
                         </div>
@@ -906,12 +901,12 @@
                                     <h3>Producción Completa</h3>
                                     <div class="price-tag">$245</div>
                                     <p class="price-description">Banco de recursos visuales robusto para cubrir campañas completas.</p>
-                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                    <a href="contacto.html?plan=Produccion%20Completa" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- BLOQUE CLONADO EXACTO (Para garantizar el bucle infinito al desplazarse al -50%) -->
+                        <!-- BLOQUE CLONADO EXACTO -->
                         <div class="flip-card" onclick="this.classList.toggle('flipped')">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
@@ -932,7 +927,7 @@
                                     <h3>Contenido Esencial</h3>
                                     <div class="price-tag">$110</div>
                                     <p class="price-description">Galería fotográfica base lista para publicar.</p>
-                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                    <a href="contacto.html?plan=Contenido%20Esencial" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                                 </div>
                             </div>
                         </div>
@@ -957,7 +952,7 @@
                                     <h3>Contenido Plus</h3>
                                     <div class="price-tag">$155</div>
                                     <p class="price-description">Combinación ideal de formato estático y video dinámico.</p>
-                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                    <a href="contacto.html?plan=Contenido%20Plus" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                                 </div>
                             </div>
                         </div>
@@ -982,7 +977,7 @@
                                     <h3>Contenido Creativo</h3>
                                     <div class="price-tag">$195</div>
                                     <p class="price-description">Mayor volumen de material gráfico diversificado.</p>
-                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                    <a href="contacto.html?plan=Contenido%20Creativo" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                                 </div>
                             </div>
                         </div>
@@ -1008,7 +1003,7 @@
                                     <h3>Producción Completa</h3>
                                     <div class="price-tag">$245</div>
                                     <p class="price-description">Banco de recursos visuales robusto para cubrir campañas completas.</p>
-                                    <a href="contacto.html" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
+                                    <a href="contacto.html?plan=Produccion%20Completa" class="btn-card-solid" onclick="event.stopPropagation();">Contratar Servicio</a>
                                 </div>
                             </div>
                         </div>
@@ -1023,7 +1018,7 @@
                     <h3>¿Necesitas combinar varios servicios o un paquete a la medida?</h3>
                     <p>Podemos armar una propuesta personalizada según las necesidades exactas de tu empresa.</p>
                 </div>
-                <a href="contacto.html" class="btn-custom">Cotizar a la Medida</a>
+                <a href="contacto.html?plan=Cotizacion%20Personalizada" class="btn-custom">Cotizar a la Medida</a>
             </div>
 
         </div>
@@ -1038,7 +1033,6 @@
 
     <!-- SCRIPTS -->
     <script>
-        // Lógica de Scroll y Navbar
         const navbar = document.querySelector('.navbar');
         const logoImg = document.getElementById('main-logo');
         
@@ -1062,7 +1056,6 @@
             }
         }
 
-        // Lógica para cambiar entre pestañas (Tabs)
         function switchTab(categoryId, element) {
             const blocks = document.querySelectorAll('.category-block');
             blocks.forEach(block => block.classList.remove('active'));
