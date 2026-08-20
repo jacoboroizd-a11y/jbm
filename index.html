@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JBM Media | Social Media Management & Estrategia Digital</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #3871B8;
+            --dark-blue: #1A467B;
+            --accent-orange: #F59249;
+            --orange-hover: #E07A2E;
+            --light-blue: #779FBF;
+            --soft-cream: #FFFDD9;
+            --sand-bg: #F0E8DD;
+            --bg-white: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 30px -10px rgba(56, 113, 184, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden; /* Evita cualquier desplazamiento horizontal no deseado */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--sand-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            transition: height 0.3s ease;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .brand-logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            margin: -20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* TRANSICIÓN DE BARRA AL HACER SCROLL */
+        .navbar.scrolled {
+            background-color: rgba(26, 70, 123, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar.scrolled .nav-container {
+            height: 60px;
+        }
+
+        .navbar.scrolled .brand-logo img {
+            height: 70px;
+            margin: -5px 0;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        .navbar.scrolled .btn-primary {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(245, 146, 73, 0.35);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: #FFFFFF;
+            padding: 140px 0 100px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(245, 146, 73, 0.2);
+            border: 1px solid var(--accent-orange);
+            color: var(--soft-cream);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            color: var(--accent-orange);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #E2E8F0;
+            max-width: 680px;
+            margin: 0 auto 36px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* STATS BAR */
+        .stats-section {
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background-color: var(--bg-white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card {
+            text-align: center;
+            border-right: 1px solid #F1F5F9;
+        }
+
+        .stat-card:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* GENERAL SECTIONS */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        .section-tag {
+            color: var(--accent-orange);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .section-description {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* ABOUT */
+        .dna-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .dna-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        .dna-card.accent {
+            border-top-color: var(--accent-orange);
+        }
+
+        .dna-icon {
+            width: 44px;
+            height: 44px;
+            background-color: #EFF6FF;
+            color: var(--primary-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .pilar-card {
+            background-color: var(--bg-white);
+            padding: 24px 16px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pilar-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 6px;
+        }
+
+        .pilar-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* PORTFOLIO GRID & CARDS (CORREGIDO PARA MÓVIL) */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            width: 100%;
+        }
+
+        .portfolio-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #E2E8F0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .portfolio-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: #FFFFFF;
+            padding: 20px;
+        }
+
+        .portfolio-category {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .portfolio-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-info p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .portfolio-info strong {
+            color: var(--text-dark);
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap; /* Permite que los tags bajen si no caben */
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .tag {
+            background-color: var(--soft-cream);
+            color: var(--primary-blue);
+            border: 1px solid var(--light-blue);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            white-space: normal; /* Permite ajuste en pantallas pequeñas */
+            word-break: break-word;
+        }
+
+        /* CTA & CONTACT */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-radius: 24px;
+            padding: 40px 20px;
+            color: #FFFFFF;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            font-size: 15px;
+            color: var(--soft-cream);
+            margin-bottom: 24px;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #0F172A;
+            color: #94A3B8;
+            padding: 30px 0;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* ===================================================
+           REGLAS RESPONSIVAS ESPECÍFICAS PARA MÓVIL (PANTALLAS PEQUEÑAS)
+           =================================================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px; /* Reduce márgenes laterales para aprovechar espacio */
+            }
+
+            .nav-container {
+                height: 65px;
+            }
+
+            .brand-logo img {
+                height: 70px;
+                margin: 0;
+            }
+
+            .nav-links {
+                display: none; /* Oculta enlaces redundantes en móvil */
+            }
+
+            .btn-primary {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+
+            .hero {
+                padding: 110px 0 80px;
+            }
+
+            .hero-title {
+                font-size: 30px;
+            }
+
+            .hero-subtitle {
+                font-size: 15px;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-cta-group .btn {
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 20px;
+            }
+
+            .stat-card {
+                border-right: none;
+                border-bottom: 1px solid #F1F5F9;
+                padding-bottom: 12px;
+            }
+
+            .stat-card:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .dna-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pilares-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* FIX CLAVE DE PORTAFOLIO EN MÓVIL */
+            .portfolio-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .portfolio-card {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .portfolio-body {
+                padding: 16px;
+            }
+
+            .portfolio-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            .tag {
+                font-size: 10px;
+                padding: 4px 6px;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">
+                <img src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#contacto" class="btn btn-primary">Agendar Asesoría</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <span class="hero-badge">Social Media Management & Branding</span>
+            <h1 class="hero-title">Creamos con estrategia.<br><span>Crecemos con resultados.</span></h1>
+            <p class="hero-subtitle">Transformamos la presencia digital de empresas y marcas personales con contenido audiovisual que conecta, fideliza y vende.</p>
+            <div class="hero-cta-group">
+                <a href="#portafolio" class="btn btn-primary">Ver Casos de Éxito</a>
+                <a href="#nosotros" class="btn btn-secondary">Conocer la Agencia</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS HIGHLIGHTS -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">+220K</div>
+                    <div class="stat-label">Reproducciones en Video</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">+12.4K</div>
+                    <div class="stat-label">Seguidores en TikTok</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">+230K</div>
+                    <div class="stat-label">Interacciones Totales</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & BRAND ESSENCE -->
+    <section id="nosotros" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nuestra Identidad</span>
+                <h2 class="section-title">Construimos marcas memorables y rentables</h2>
+                <p class="section-description">Acompañamos a tu negocio en el entorno digital combinando la visión estratégica del marketing con la potencia del diseño visual.</p>
+            </div>
+
+            <div class="dna-grid">
+                <div class="dna-card">
+                    <div class="dna-icon">🎯</div>
+                    <h3>¿Quiénes Somos?</h3>
+                    <p>Somos una agencia de Social Media Management enfocada en construir una presencia digital profesional, estratégica y coherente para negocios y marcas personales.</p>
+                </div>
+                <div class="dna-card accent">
+                    <div class="dna-icon">💡</div>
+                    <h3>Propuesta de Valor</h3>
+                    <p>No solo buscamos que tus redes sociales se vean estéticas; diseñamos estrategias de contenido orientadas a generar confianza, comunidad y ventas reales.</p>
+                </div>
+            </div>
+
+            <!-- PILARES -->
+            <div style="margin-top: 50px;">
+                <div class="section-header" style="margin-bottom: 24px;">
+                    <span class="section-tag">Metodología</span>
+                    <h3 style="font-size: 22px; font-weight: 700;">Nuestros Pilares de Trabajo</h3>
+                </div>
+                <div class="pilares-grid">
+                    <div class="pilar-card">
+                        <h4>Estrategia</h4>
+                        <p>Comunicación con intención, objetivos claros y métricas.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Creatividad</h4>
+                        <p>Diseño audiovisual disruptivo y formatos en tendencia.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Cercanía</h4>
+                        <p>Conexión orgánica y real con la audiencia objetivo.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Resultados</h4>
+                        <p>Crecimiento sostenible y retorno de inversión.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO / CASOS DE ÉXITO -->
+    <section id="portafolio" class="section" style="background-color: rgba(255,255,255,0.6);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portafolio</span>
+                <h2 class="section-title">Casos de Éxito Destacados</h2>
+                <p class="section-description">Resultados reales generados para nuestros clientes mediante contenido orgánico y estrategia focalizada.</p>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Proyecto 1: Gastronomía -->
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <span class="portfolio-category">Gastronomía</span>
+                        <h3>Restaurantes</h3>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-info">
+                            <p><strong>Objetivo:</strong> Posicionar al restaurante con mayor presencia digital en León con contenido de alto impacto.</p>
+                            <p><strong>Estrategia:</strong> Videos cortos en tendencia, storytelling gastronómico y publicación constante.</p>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">+12.4K Seguidores</span>
+                            <span class="tag">+230K Me Gusta</span>
+                            <span class="tag">Videos +148K Vistas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2: Hostelería -->
+                <div class="portfolio-card">
+                    <div class="portfolio-header" style="background: linear-gradient(135deg, #1A467B 0%, #3871B8 100%);">
+                        <span class="portfolio-category">Turismo & Hospedaje</span>
+                        <h3>Hostelería</h3>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-info">
+                            <p><strong>Objetivo:</strong> Aumentar el alcance orgánico y captar reservas mostrando la experiencia de la propiedad.</p>
+                            <p><strong>Estrategia:</strong> Recorridos de instalaciones y formato Reels/TikTok orientados a conversión.</p>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">220K+ Vistas en Reel</span>
+                            <span class="tag">58.9K+ Me Gusta</span>
+                            <span class="tag">Casi 4K Seguidores</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3: Medicina Estética -->
+                <div class="portfolio-card">
+                    <div class="portfolio-header" style="background: linear-gradient(135deg, #779FBF 0%, #3871B8 100%);">
+                        <span class="portfolio-category">Medicina Estética</span>
+                        <h3>Medicina</h3>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-info">
+                            <p><strong>Objetivo:</strong> Posicionar a la especialista como referente profesional y agendar más consultas.</p>
+                            <p><strong>Estrategia:</strong> Contenido educativo, fotografía profesional y branding visual unificado en feed.</p>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">Branding de Feed</span>
+                            <span class="tag">Contenido Educativo</span>
+                            <span class="tag">Posicionamiento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 4: Branding -->
+                <div class="portfolio-card">
+                    <div class="portfolio-header" style="background: linear-gradient(135deg, #F59249 0%, #1A467B 100%);">
+                        <span class="portfolio-category">Branding & Diseño</span>
+                        <h3>Identidad Visual</h3>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-info">
+                            <p><strong>Objetivo:</strong> Construir una identidad de marca sólida, moderna y diferenciadora desde cero.</p>
+                            <p><strong>Estrategia:</strong> Desarrollo de logotipo, paleta cromática, tipografía corporativa y manual de marca comercial.</p>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">Diseño de Logo</span>
+                            <span class="tag">Manual de Marca</span>
+                            <span class="tag">Línea Gráfica</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION / CONTACT -->
+    <section id="contacto" class="section">
+        <div class="container">
+            <div class="cta-section">
+                <h2>¿Listo para impulsar el crecimiento de tu marca?</h2>
+                <p>Diseñemos una estrategia a la medida de tus objetivos comerciales.</p>
+                <a href="https://wa.me/50576977617" target="_blank" class="btn btn-primary" style="font-size: 15px; padding: 14px 28px;">
+                    Hablar por WhatsApp
+                </a>
+                <div class="contact-methods">
+                    <a href="https://wa.me/50576977617" target="_blank" class="contact-item">📱 +505 7697-7617</a>
+                    <a href="mailto:info@jbmsmm.com" class="contact-item">✉️ info@jbmsmm.com</a>
+                    <a href="https://www.instagram.com/jbmmedia_/" target="_blank" class="contact-item">📷 @jbmmedia_</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 JBM Media — Social Media Management. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // TRANSICIÓN DE BARRA DE NAVEGACIÓN AL HACER SCROLL
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
