@@ -112,6 +112,24 @@
             color: var(--primary-blue);
         }
 
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Botón exclusivo para versión Móvil */
+        .btn-mobile-prices {
+            display: none;
+            background-color: rgba(56, 113, 184, 0.1);
+            color: var(--primary-blue);
+            border: 1px solid rgba(56, 113, 184, 0.3);
+            border-radius: 50px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
         .navbar.scrolled {
             background-color: rgba(26, 70, 123, 0.95);
             backdrop-filter: blur(10px);
@@ -136,6 +154,12 @@
         .navbar.scrolled .btn-primary {
             padding: 8px 16px;
             font-size: 13px;
+        }
+
+        .navbar.scrolled .btn-mobile-prices {
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.15);
         }
 
         /* BUTTONS */
@@ -493,7 +517,18 @@
             .nav-container { height: 65px; }
             .brand-logo img { height: 70px; margin: 0; }
             .nav-links { display: none; }
-            .btn-primary { font-size: 12px; padding: 8px 14px; }
+            
+            /* Visualización de los 2 botones en móvil */
+            .btn-mobile-prices {
+                display: inline-flex;
+                font-size: 11px;
+                padding: 7px 12px;
+            }
+            .nav-actions .btn-primary { 
+                font-size: 11px; 
+                padding: 7px 12px; 
+            }
+
             .hero { padding: 110px 0 80px; }
             .hero-title { font-size: 30px; }
             .hero-subtitle { font-size: 15px; }
@@ -521,8 +556,9 @@
         <div class="container nav-container">
             <!-- LOGO: DIRIGE A INDEX.HTML -->
             <a href="index.html" class="brand-logo">
-                <img src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
+                <img id="main-logo" src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
             </a>
+            
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
@@ -530,8 +566,12 @@
                 <li><a href="#portafolio">Portafolio</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
-            <!-- AGENDAR ASESORÍA DIRIGE A CONTACTO.HTML -->
-            <a href="contacto.html" class="btn btn-primary">Agendar Asesoría</a>
+
+            <!-- ACCIONES DEL HEADER (Muestran 2 CTAs en Móvil y 1 en Desktop) -->
+            <div class="nav-actions">
+                <a href="paquetes.html" class="btn btn-mobile-prices">Precios</a>
+                <a href="contacto.html" class="btn btn-primary">Agendar Asesoría</a>
+            </div>
         </div>
     </nav>
 
@@ -543,7 +583,7 @@
             <p class="hero-subtitle">Transformamos la presencia digital de empresas y marcas personales con contenido audiovisual que conecta, fideliza y vende.</p>
             <div class="hero-cta-group">
                 <a href="#portafolio" class="btn btn-primary">Ver Casos de Éxito</a>
-                <a href="#nosotros" class="btn btn-secondary">Conocer la Agencia</a>
+                <a href="paquetes.html" class="btn btn-secondary">Ver Planes & Precios</a>
             </div>
         </div>
     </section>
@@ -628,7 +668,7 @@
             </div>
 
             <div class="portfolio-grid">
-                <!-- Proyecto 1: Gastronomía -->
+                <!-- Proyecto 1 -->
                 <div class="portfolio-card">
                     <div class="portfolio-header">
                         <span class="portfolio-category">Gastronomía</span>
@@ -647,7 +687,7 @@
                     </div>
                 </div>
 
-                <!-- Proyecto 2: Hostelería -->
+                <!-- Proyecto 2 -->
                 <div class="portfolio-card">
                     <div class="portfolio-header" style="background: linear-gradient(135deg, #1A467B 0%, #3871B8 100%);">
                         <span class="portfolio-category">Turismo & Hospedaje</span>
@@ -666,7 +706,7 @@
                     </div>
                 </div>
 
-                <!-- Proyecto 3: Medicina Estética -->
+                <!-- Proyecto 3 -->
                 <div class="portfolio-card">
                     <div class="portfolio-header" style="background: linear-gradient(135deg, #779FBF 0%, #3871B8 100%);">
                         <span class="portfolio-category">Medicina Estética</span>
@@ -685,7 +725,7 @@
                     </div>
                 </div>
 
-                <!-- Proyecto 4: Branding -->
+                <!-- Proyecto 4 -->
                 <div class="portfolio-card">
                     <div class="portfolio-header" style="background: linear-gradient(135deg, #F59249 0%, #1A467B 100%);">
                         <span class="portfolio-category">Branding & Diseño</span>
@@ -732,16 +772,36 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPTS DE CONTROL DE SCROLL Y MANEJO DE LOGO -->
     <script>
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
+        const navbar = document.querySelector('.navbar');
+        const logoImg = document.getElementById('main-logo');
+        
+        // URLs de los Logos
+        const defaultLogo = "https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz";
+        const whiteLogo = "https://lh3.googleusercontent.com/d/1MGDi2Pj3Pfm01IQtnaLCtCqAbn_V45s0";
+
+        function handleNavbarState() {
+            const isScrolled = window.scrollY > 50;
+            const isMobile = window.innerWidth <= 768;
+
+            if (isScrolled) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
+
+            // Cambiar logo si está scrolleado O si está en móvil
+            if (isScrolled || isMobile) {
+                logoImg.src = whiteLogo;
+            } else {
+                logoImg.src = defaultLogo;
+            }
+        }
+
+        window.addEventListener('scroll', handleNavbarState);
+        window.addEventListener('resize', handleNavbarState);
+        document.addEventListener('DOMContentLoaded', handleNavbarState);
     </script>
 </body>
 </html>
