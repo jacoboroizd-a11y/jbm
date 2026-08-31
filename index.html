@@ -4,256 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>JBM Media | Social Media Management & Estrategia Digital</title>
-    
+
     <!-- Favicon / Logo en la pestaña del navegador -->
     <link rel="icon" type="image/png" href="Logo JBM/PNG/8.png">
+
+    <!-- Preload the logo that paints immediately (helps Largest Contentful Paint) -->
+    <link rel="preload" as="image" href="Logo JBM/PNG/1.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Shared stylesheet (cached across every page of the site) -->
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        :root {
-            --primary-blue: #3871B8;
-            --dark-blue: #1A467B;
-            --accent-orange: #F59249;
-            --orange-hover: #E07A2E;
-            --light-blue: #779FBF;
-            --soft-cream: #FFFDD9;
-            --sand-bg: #F0E8DD;
-            --bg-white: #FFFFFF;
-            --text-dark: #1E293B;
-            --text-muted: #64748B;
-            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 30px -10px rgba(56, 113, 184, 0.15);
-            --shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        html, body {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--sand-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- ANIMACIONES DE REVEAL EN SCROLL --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, transform;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* NAVIGATION BAR */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 0;
-            transition: all 0.4s ease-in-out;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-            transition: height 0.3s ease;
-        }
-
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-
-        .brand-logo img {
-            height: 120px;
-            width: auto;
-            object-fit: contain;
-            margin: -20px 0;
-            transition: all 0.3s ease;
-        }
-
-        .brand-logo:hover img {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-mobile-prices {
-            display: none;
-            background-color: rgba(56, 113, 184, 0.1);
-            color: var(--primary-blue);
-            border: 1px solid rgba(56, 113, 184, 0.3);
-            border-radius: 50px;
-            font-weight: 700;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            background-color: rgba(26, 70, 123, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar.scrolled .nav-container {
-            height: 60px;
-        }
-
-        .navbar.scrolled .brand-logo img {
-            height: 70px;
-            margin: -5px 0;
-        }
-
-        .navbar.scrolled .nav-links a {
-            color: #FFFFFF;
-            font-size: 14px;
-        }
-
-        .navbar.scrolled .nav-links a::after {
-            background-color: var(--accent-orange);
-        }
-
-        .navbar.scrolled .btn-primary {
-            padding: 8px 16px;
-            font-size: 13px;
-        }
-
-        .navbar.scrolled .btn-mobile-prices {
-            color: #FFFFFF;
-            border-color: rgba(255, 255, 255, 0.4);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-        /* BUTTONS */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
-            border: none;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-orange);
-            color: #FFFFFF;
-            box-shadow: 0 4px 14px rgba(245, 146, 73, 0.35);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--orange-hover);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(245, 146, 73, 0.45);
-        }
-
-        .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #FFFFFF;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px) scale(1.02);
-            border-color: rgba(255, 255, 255, 0.6);
-        }
+        /* ---- Page-specific styles for the home page ---- */
 
         /* HERO SECTION */
         .hero {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: #FFFFFF;
             padding: 140px 0 100px;
-            position: relative;
-            overflow: hidden;
             text-align: center;
         }
 
@@ -269,11 +42,6 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .hero-badge:hover {
-            transform: scale(1.05);
         }
 
         .hero-title {
@@ -319,21 +87,11 @@
             border-radius: 20px;
             padding: 30px;
             box-shadow: var(--shadow-lg);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .stats-grid:hover {
-            box-shadow: var(--shadow-hover);
         }
 
         .stat-card {
             text-align: center;
             border-right: 1px solid #F1F5F9;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
         }
 
         .stat-card:last-child {
@@ -413,7 +171,6 @@
             border-top-color: var(--accent-orange);
         }
 
-        /* TAMAÑO DE ÍCONOS DUPLICADO */
         .dna-icon {
             width: 120px;
             height: 120px;
@@ -475,7 +232,6 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
-            width: 100%;
         }
 
         .portfolio-card {
@@ -486,13 +242,11 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #E2E8F0;
-            width: 100%;
-            box-sizing: border-box;
-            transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .portfolio-card:hover {
-            transform: translateY(-10px) scale(1.01);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
         }
 
@@ -500,11 +254,6 @@
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: #FFFFFF;
             padding: 20px;
-            transition: filter 0.3s ease;
-        }
-
-        .portfolio-card:hover .portfolio-header {
-            filter: brightness(1.08);
         }
 
         .portfolio-category {
@@ -517,12 +266,6 @@
             border-radius: 20px;
             display: inline-block;
             margin-bottom: 8px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .portfolio-card:hover .portfolio-category {
-            background-color: rgba(255, 255, 255, 0.35);
-            transform: scale(1.05);
         }
 
         .portfolio-header h3 {
@@ -542,7 +285,6 @@
             font-size: 13.5px;
             color: var(--text-muted);
             margin-bottom: 10px;
-            word-wrap: break-word;
         }
 
         .portfolio-info strong {
@@ -564,8 +306,6 @@
             font-weight: 700;
             padding: 4px 8px;
             border-radius: 6px;
-            white-space: normal;
-            word-break: break-word;
             transition: transform 0.2s ease, background-color 0.2s ease;
         }
 
@@ -582,13 +322,6 @@
             color: #FFFFFF;
             text-align: center;
             box-shadow: var(--shadow-lg);
-            margin-bottom: 40px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta-section:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 25px 40px -10px rgba(56, 113, 184, 0.25);
         }
 
         .cta-section h2 {
@@ -625,35 +358,11 @@
 
         .contact-item:hover {
             background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px) scale(1.03);
+            transform: translateY(-3px);
             border-color: rgba(255, 255, 255, 0.5);
         }
 
-        /* FOOTER */
-        .footer {
-            background-color: #0F172A;
-            color: #94A3B8;
-            padding: 30px 0;
-            font-size: 13px;
-            text-align: center;
-        }
-
         @media (max-width: 768px) {
-            .container { padding: 0 16px; }
-            .nav-container { height: 65px; }
-            .brand-logo img { height: 70px; margin: 0; }
-            .nav-links { display: none; }
-            
-            .btn-mobile-prices {
-                display: inline-flex;
-                font-size: 11px;
-                padding: 7px 12px;
-            }
-            .nav-actions .btn-primary { 
-                font-size: 11px; 
-                padding: 7px 12px; 
-            }
-
             .hero { padding: 110px 0 80px; }
             .hero-title { font-size: 30px; }
             .hero-subtitle { font-size: 15px; }
@@ -666,10 +375,8 @@
             .dna-icon { width: 90px; height: 90px; }
             .dna-icon img { width: 60px; height: 60px; }
             .pilares-grid { grid-template-columns: repeat(2, 1fr); }
-            .portfolio-grid { display: flex; flex-direction: column; gap: 20px; width: 100%; }
-            .portfolio-card { width: 100% !important; max-width: 100% !important; }
+            .portfolio-grid { grid-template-columns: 1fr; }
             .portfolio-body { padding: 16px; }
-            .portfolio-tags { display: flex; flex-wrap: wrap; gap: 6px; }
             .tag { font-size: 10px; padding: 4px 6px; }
             .contact-methods { flex-direction: column; align-items: center; gap: 10px; }
             .contact-item { width: 100%; justify-content: center; }
@@ -682,9 +389,9 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="brand-logo">
-                <img id="main-logo" src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
+                <img id="main-logo" src="Logo JBM/PNG/1.png" alt="JBM Media Logo" width="200" height="120">
             </a>
-            
+
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
@@ -745,14 +452,14 @@
             <div class="dna-grid">
                 <div class="dna-card">
                     <div class="dna-icon">
-                        <img src="Logo JBM/PNG/13.png" alt="Ícono Quiénes Somos">
+                        <img src="Logo JBM/PNG/13.png" alt="Ícono Quiénes Somos" loading="lazy" decoding="async" width="85" height="85">
                     </div>
                     <h3>¿Quiénes Somos?</h3>
                     <p>Somos una agencia de Social Media Management enfocada en construir una presencia digital profesional, estratégica y coherente para negocios y marcas personales.</p>
                 </div>
                 <div class="dna-card accent">
                     <div class="dna-icon">
-                        <img src="Logo JBM/PNG/14.png" alt="Ícono Propuesta de Valor">
+                        <img src="Logo JBM/PNG/14.png" alt="Ícono Propuesta de Valor" loading="lazy" decoding="async" width="85" height="85">
                     </div>
                     <h3>Propuesta de Valor</h3>
                     <p>No solo buscamos que tus redes sociales se vean estéticas; diseñamos estrategias de contenido orientadas a generar confianza, comunidad y ventas reales.</p>
@@ -886,9 +593,9 @@
                     Agendar Asesoría
                 </a>
                 <div class="contact-methods">
-                    <a href="https://wa.me/50576977617" target="_blank" class="contact-item">📱 +505 7697-7617</a>
+                    <a href="https://wa.me/50576977617" target="_blank" rel="noopener" class="contact-item">📱 +505 7697-7617</a>
                     <a href="mailto:info@jbmsmm.com" class="contact-item">✉️ info@jbmsmm.com</a>
-                    <a href="https://www.instagram.com/jbmmedia_/" target="_blank" class="contact-item">📷 @jbmmedia_</a>
+                    <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener" class="contact-item">📷 @jbmmedia_</a>
                 </div>
             </div>
         </div>
@@ -901,56 +608,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
-    <script>
-        const navbar = document.querySelector('.navbar');
-        const logoImg = document.getElementById('main-logo');
-        
-        const defaultLogo = "https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz";
-        const whiteLogo = "https://lh3.googleusercontent.com/d/1MGDi2Pj3Pfm01IQtnaLCtCqAbn_V45s0";
-
-        function handleNavbarState() {
-            const isScrolled = window.scrollY > 50;
-            const isMobile = window.innerWidth <= 768;
-
-            if (isScrolled) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            if (isScrolled || isMobile) {
-                logoImg.src = whiteLogo;
-            } else {
-                logoImg.src = defaultLogo;
-            }
-        }
-
-        function initScrollReveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            const observerOptions = {
-                root: null,
-                threshold: 0.15
-            };
-
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            reveals.forEach(el => revealObserver.observe(el));
-        }
-
-        window.addEventListener('scroll', handleNavbarState);
-        window.addEventListener('resize', handleNavbarState);
-        window.addEventListener('DOMContentLoaded', () => {
-            handleNavbarState();
-            initScrollReveal();
-        });
-    </script>
+    <!-- Shared script (navbar state, logo swap, scroll reveal) -->
+    <script src="script.js" defer></script>
 </body>
 </html>
