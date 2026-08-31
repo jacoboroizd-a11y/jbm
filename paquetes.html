@@ -4,170 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Paquetes y Planes | JBM Media</title>
+
+    <link rel="icon" type="image/png" href="Logo JBM/PNG/8.png">
+    <link rel="preload" as="image" href="Logo JBM/PNG/1.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Shared stylesheet (cached across every page of the site) -->
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        :root {
-            --primary-blue: #3871B8;
-            --dark-blue: #1A467B;
-            --accent-orange: #F59249;
-            --orange-hover: #E07A2E;
-            --light-blue: #779FBF;
-            --soft-cream: #FFFDD9;
-            --sand-bg: #F0E8DD;
-            --bg-white: #FFFFFF;
-            --text-dark: #1E293B;
-            --text-muted: #64748B;
-            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 30px -10px rgba(56, 113, 184, 0.2);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--sand-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* NAVIGATION BAR */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 0;
-            transition: all 0.4s ease-in-out;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-            transition: height 0.3s ease;
-        }
-
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            cursor: pointer;
-        }
-
-        .brand-logo img {
-            height: 120px;
-            width: auto;
-            object-fit: contain;
-            margin: -20px 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 14px;
-            transition: all 0.25s ease;
-            cursor: pointer;
-            border: none;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-orange);
-            color: #FFFFFF;
-            box-shadow: 0 4px 14px rgba(245, 146, 73, 0.35);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--orange-hover);
-            transform: translateY(-2px);
-        }
-
-        .navbar.scrolled {
-            background-color: rgba(26, 70, 123, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar.scrolled .nav-container {
-            height: 60px;
-        }
-
-        .navbar.scrolled .brand-logo img {
-            height: 70px;
-            margin: -5px 0;
-        }
-
-        .navbar.scrolled .nav-links a {
-            color: #FFFFFF;
-        }
-
-        .navbar.scrolled .btn-primary {
-            padding: 8px 16px;
-            font-size: 13px;
-        }
+        /* ---- Page-specific styles for Paquetes ---- */
 
         /* HERO HEADER */
         .packages-hero {
@@ -190,7 +40,7 @@
             margin: 0 auto;
         }
 
-        /* CATEGORIES TABS */
+        /* CATEGORY TABS */
         .category-tabs-container {
             display: flex;
             justify-content: center;
@@ -225,11 +75,11 @@
 
         .category-block {
             display: none;
-            animation: fadeIn 0.4s ease-in-out;
         }
 
         .category-block.active {
             display: block;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -257,17 +107,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            justify-content: center;
             align-items: stretch;
         }
 
-        /* CARRUSEL INFINITO EN CSS PURO */
+        /* INFINITE CSS CAROUSEL (Creación de Contenido tab) */
         .carousel-wrapper {
             width: 100%;
             overflow: hidden;
             padding: 20px 0;
-            position: relative;
-            user-select: none;
         }
 
         .carousel-track {
@@ -288,15 +135,11 @@
         }
 
         @keyframes scrollInfinite {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* FLIP CARD STYLES */
+        /* FLIP CARDS */
         .flip-card {
             background-color: transparent;
             width: 100%;
@@ -331,17 +174,14 @@
             flex-direction: column;
             justify-content: space-between;
             border: 2px solid rgba(56, 113, 184, 0.5);
-            box-shadow: 0 0 15px rgba(56, 113, 184, 0.35),
-                        inset 0 0 10px rgba(56, 113, 184, 0.15);
+            box-shadow: 0 0 15px rgba(56, 113, 184, 0.35), inset 0 0 10px rgba(56, 113, 184, 0.15);
             transition: box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
         .flip-card:hover .flip-card-front,
         .flip-card:hover .flip-card-back {
             border-color: var(--primary-blue);
-            box-shadow: 0 0 25px rgba(56, 113, 184, 0.8),
-                        0 0 10px rgba(56, 113, 184, 0.5),
-                        inset 0 0 12px rgba(56, 113, 184, 0.25);
+            box-shadow: 0 0 25px rgba(56, 113, 184, 0.8), 0 0 10px rgba(56, 113, 184, 0.5), inset 0 0 12px rgba(56, 113, 184, 0.25);
         }
 
         .flip-card-front {
@@ -351,16 +191,13 @@
         .flip-card.featured .flip-card-front,
         .flip-card.featured .flip-card-back {
             border-color: var(--accent-orange);
-            box-shadow: 0 0 18px rgba(245, 146, 73, 0.6),
-                        inset 0 0 10px rgba(245, 146, 73, 0.25);
+            box-shadow: 0 0 18px rgba(245, 146, 73, 0.6), inset 0 0 10px rgba(245, 146, 73, 0.25);
         }
 
         .flip-card.featured:hover .flip-card-front,
         .flip-card.featured:hover .flip-card-back {
             border-color: var(--accent-orange);
-            box-shadow: 0 0 30px rgba(245, 146, 73, 0.9),
-                        0 0 12px rgba(245, 146, 73, 0.6),
-                        inset 0 0 15px rgba(245, 146, 73, 0.35);
+            box-shadow: 0 0 30px rgba(245, 146, 73, 0.9), 0 0 12px rgba(245, 146, 73, 0.6), inset 0 0 15px rgba(245, 146, 73, 0.35);
         }
 
         .featured-badge {
@@ -517,30 +354,16 @@
             font-weight: 700;
             font-size: 15px;
             white-space: nowrap;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
         .btn-custom:hover {
             background-color: var(--dark-blue);
         }
 
-        /* FOOTER */
-        .footer {
-            background-color: #0F172A;
-            color: #94A3B8;
-            padding: 30px 0;
-            font-size: 13px;
-            text-align: center;
-        }
-
-        /* RESPONSIVE */
         @media (max-width: 992px) {
             .flip-card { height: 500px; }
             .custom-banner { flex-direction: column; text-align: center; gap: 20px; }
-            .nav-links { display: none; }
-            .nav-container { height: 65px; }
-            .brand-logo img { height: 70px; margin: 0; }
-            .nav-actions .btn-primary { font-size: 11px; padding: 7px 12px; }
         }
     </style>
 </head>
@@ -550,7 +373,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="brand-logo">
-                <img id="main-logo" src="https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz" alt="JBM Media Logo">
+                <img id="main-logo" src="Logo JBM/PNG/1.png" alt="JBM Media Logo" width="200" height="120">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
@@ -571,7 +394,7 @@
         <div class="container">
             <h1>Nuestros Servicios y Tarifas</h1>
             <p>Selecciona una categoría para explorar nuestros planes diseñados a la medida de tu marca.</p>
-            
+
             <div class="category-tabs-container">
                 <button class="tab-btn active" onclick="switchTab('smm', this)">Social Media Management</button>
                 <button class="tab-btn" onclick="switchTab('branding', this)">Branding</button>
@@ -584,7 +407,7 @@
     <!-- PRICING CARDS SECTION -->
     <section class="pricing-section">
         <div class="container">
-            
+
             <!-- CATEGORÍA 1: SOCIAL MEDIA MANAGEMENT -->
             <div id="smm" class="category-block active">
                 <div class="section-title">
@@ -592,7 +415,7 @@
                     <p>Incluye Estrategia, Planificación, Diseño, Copywriting, Edición de reels, Programación, Publicación y Análisis de métricas.</p>
                 </div>
                 <div class="pricing-grid">
-                    
+
                     <!-- CRECE -->
                     <div class="flip-card" onclick="this.classList.toggle('flipped')">
                         <div class="flip-card-inner">
@@ -691,7 +514,7 @@
                     <p>Construcción visual sólida y profesional para definir la esencia de tu negocio.</p>
                 </div>
                 <div class="pricing-grid">
-                    
+
                     <!-- BRANDING ESENCIA -->
                     <div class="flip-card" onclick="this.classList.toggle('flipped')">
                         <div class="flip-card-inner">
@@ -761,7 +584,7 @@
                     <p>Orientación directa para marcas que prefieren gestionar su comunidad de manera interna.</p>
                 </div>
                 <div class="pricing-grid">
-                    
+
                     <!-- ASESORIA -->
                     <div class="flip-card featured" style="max-width: 450px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
                         <div class="flip-card-inner">
@@ -800,10 +623,10 @@
                     <h2>Creación de Contenido Audiovisual</h2>
                     <p>Fotografía y video profesional optimizados para redes sociales.</p>
                 </div>
-                
+
                 <div class="carousel-wrapper">
                     <div class="carousel-track">
-                        
+
                         <!-- BLOQUE ORIGINAL (4 Tarjetas) -->
                         <div class="flip-card" onclick="this.classList.toggle('flipped')">
                             <div class="flip-card-inner">
@@ -906,8 +729,8 @@
                             </div>
                         </div>
 
-                        <!-- BLOQUE CLONADO EXACTO -->
-                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <!-- BLOQUE CLONADO (idéntico) para el efecto de scroll infinito sin costuras -->
+                        <div class="flip-card" aria-hidden="true" onclick="this.classList.toggle('flipped')">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <div>
@@ -932,7 +755,7 @@
                             </div>
                         </div>
 
-                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card" aria-hidden="true" onclick="this.classList.toggle('flipped')">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <div>
@@ -957,7 +780,7 @@
                             </div>
                         </div>
 
-                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card" aria-hidden="true" onclick="this.classList.toggle('flipped')">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <div>
@@ -982,7 +805,7 @@
                             </div>
                         </div>
 
-                        <div class="flip-card featured" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card featured" aria-hidden="true" onclick="this.classList.toggle('flipped')">
                             <div class="featured-badge">Más Completo</div>
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
@@ -1031,45 +854,21 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- Shared script (navbar state, logo swap) -->
+    <script src="script.js" defer></script>
+
+    <!-- Page-specific: pricing category tabs -->
     <script>
-        const navbar = document.querySelector('.navbar');
-        const logoImg = document.getElementById('main-logo');
-        
-        const defaultLogo = "https://lh3.googleusercontent.com/d/1kuGjd7Asx6DBSkwkhBo2AFdy-rX-raOz";
-        const whiteLogo = "https://lh3.googleusercontent.com/d/1MGDi2Pj3Pfm01IQtnaLCtCqAbn_V45s0";
-
-        function handleNavbarState() {
-            const isScrolled = window.scrollY > 40;
-            const isMobile = window.innerWidth <= 992;
-
-            if (isScrolled) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            if (isScrolled || isMobile) {
-                logoImg.src = whiteLogo;
-            } else {
-                logoImg.src = defaultLogo;
-            }
-        }
-
         function switchTab(categoryId, element) {
-            const blocks = document.querySelectorAll('.category-block');
-            blocks.forEach(block => block.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
+            document.querySelectorAll('.category-block').forEach(function (block) {
+                block.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(function (btn) {
+                btn.classList.remove('active');
+            });
             document.getElementById(categoryId).classList.add('active');
             element.classList.add('active');
         }
-
-        window.addEventListener('scroll', handleNavbarState);
-        window.addEventListener('resize', handleNavbarState);
-        document.addEventListener('DOMContentLoaded', handleNavbarState);
     </script>
 </body>
 </html>
