@@ -628,96 +628,6 @@
             text-align: center;
         }
 
-        /* --- ESTILOS DEL POP-UP (MODAL CON IMAGEN) --- */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .popup-card {
-            background: var(--bg-white);
-            border-radius: 24px;
-            max-width: 520px;
-            width: 100%;
-            padding: 24px;
-            position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            transform: scale(0.8) translateY(20px);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .popup-overlay.active .popup-card {
-            transform: scale(1) translateY(0);
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(15, 23, 42, 0.6);
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 20px;
-            color: #FFFFFF;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            z-index: 10;
-        }
-
-        .popup-close:hover {
-            background: rgba(239, 68, 68, 0.9);
-            transform: rotate(90deg);
-        }
-
-        .popup-img-wrapper {
-            width: 100%;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-sm);
-            background-color: #F8FAFC;
-        }
-
-        .popup-img-wrapper img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: contain;
-            display: block;
-        }
-
-        .popup-cta {
-            width: 100%;
-        }
-
         @media (max-width: 768px) {
             .container { padding: 0 16px; }
             .nav-container { height: 65px; }
@@ -751,9 +661,6 @@
             .tag { font-size: 10px; padding: 4px 6px; }
             .contact-methods { flex-direction: column; align-items: center; gap: 10px; }
             .contact-item { width: 100%; justify-content: center; }
-            
-            .popup-card { padding: 16px; max-width: 90%; }
-            .popup-img-wrapper img { max-height: 300px; }
         }
     </style>
 </head>
@@ -978,17 +885,6 @@
         </div>
     </footer>
 
-    <!-- POP-UP MODAL CON IMAGEN DE GOOGLE DRIVE -->
-    <div id="promoPopup" class="popup-overlay">
-        <div class="popup-card">
-            <button class="popup-close" id="closePopup" aria-label="Cerrar">&times;</button>
-            <div class="popup-img-wrapper">
-                <img src="https://lh3.googleusercontent.com/d/1C0BQBFRadP0C1gDGabeQmdApZT4VCAy2" alt="Promoción JBM Media">
-            </div>
-            <a href="contacto.html" class="btn btn-primary popup-cta">Más Información</a>
-        </div>
-    </div>
-
     <!-- SCRIPTS -->
     <script>
         const navbar = document.querySelector('.navbar');
@@ -1032,31 +928,6 @@
 
             reveals.forEach(el => revealObserver.observe(el));
         }
-
-        // Lógica del Pop-up con Imagen
-        const popup = document.getElementById('promoPopup');
-        const closePopupBtn = document.getElementById('closePopup');
-
-        function openPopup() {
-            popup.classList.add('active');
-        }
-
-        function closePopup() {
-            popup.classList.remove('active');
-        }
-
-        // Abrir emergente a los 1.5 segundos
-        setTimeout(() => {
-            openPopup();
-        }, 1500);
-
-        closePopupBtn.addEventListener('click', closePopup);
-
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                closePopup();
-            }
-        });
 
         window.addEventListener('scroll', handleNavbarState);
         window.addEventListener('resize', handleNavbarState);
