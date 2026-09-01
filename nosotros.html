@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nosotros | JBM Media</title>
 
     <link rel="icon" type="image/png" href="Logo JBM/PNG/8.png">
@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Shared stylesheet -->
+    <!-- Shared stylesheet (cached across every page of the site) -->
     <link rel="stylesheet" href="styles.css">
 
     <style>
@@ -39,7 +39,7 @@
             margin: 0 auto;
         }
 
-        /* GENERAL SECTIONS */
+        /* GENERAL SECTIONS (mismo patrón que index.html) */
         .section { padding: 60px 0; }
 
         .section-header {
@@ -70,7 +70,7 @@
             margin-top: 10px;
         }
 
-        /* ABOUT / DNA */
+        /* ABOUT / DNA (movido desde index.html) */
         .dna-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -189,7 +189,6 @@
             font-size: 18px;
             font-weight: 800;
             color: var(--text-dark);
-            margin: 0;
         }
 
         .social-card-header span {
@@ -197,81 +196,67 @@
             color: var(--text-muted);
         }
 
-        /* Ajuste de Facebook Embed */
         .fb-embed-wrap {
             width: 100%;
             overflow: hidden;
             border-radius: 12px;
-            min-height: 480px;
+            min-height: 300px;
             flex-grow: 1;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            border: 1px solid #E2E8F0;
-            background: #FAFAFA;
         }
 
-        .fb-embed-wrap .fb-page,
-        .fb-embed-wrap .fb-page span,
-        .fb-embed-wrap iframe {
-            width: 100% !important;
-            height: 100% !important;
-            min-height: 480px;
-        }
-
-        /* Feed Estilo App para Instagram */
-        .ig-card-body {
+        .instagram-fallback {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            border: 1px solid #E2E8F0;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--sand-bg);
             border-radius: 12px;
-            background: #FAFAFA;
-            padding: 16px;
-            justify-content: space-between;
+            padding: 40px 20px;
+            gap: 14px;
         }
 
-        .ig-profile-subhead {
+        .instagram-fallback p {
+            font-size: 14px;
+            color: var(--text-muted);
+            max-width: 280px;
+        }
+
+        /* FEED REAL DE INSTAGRAM (poblado por instagram-feed.json, generado
+           automáticamente por el workflow de GitHub Actions) */
+        .instagram-feed-wrap {
+            flex-grow: 1;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #E2E8F0;
-        }
-
-        .ig-avatar-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .ig-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #DD2A7B;
+            flex-direction: column;
         }
 
         .ig-feed-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            margin-bottom: 16px;
+        }
+
+        .ig-post-thumb-link {
+            display: block;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
         }
 
         .ig-post-thumb {
             width: 100%;
-            aspect-ratio: 1 / 1;
-            border-radius: 8px;
+            height: 100%;
             object-fit: cover;
-            background-color: #E2E8F0;
-            transition: opacity 0.3s ease;
+            display: block;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        .ig-post-thumb:hover {
-            opacity: 0.85;
+        .ig-post-thumb-link:hover .ig-post-thumb {
+            transform: scale(1.05);
+            opacity: 0.92;
         }
 
         @media (max-width: 768px) {
@@ -375,11 +360,11 @@
             </div>
 
             <div class="social-grid">
-                <!-- FACEBOOK -->
+                <!-- FACEBOOK: Page Plugin oficial, feed en vivo real, no requiere API key -->
                 <div class="social-card">
                     <div class="social-card-header">
-                        <div class="social-icon facebook">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <div class="social-icon facebook" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                         </div>
                         <div>
                             <h3>Facebook</h3>
@@ -404,47 +389,28 @@
                     </div>
                 </div>
 
-                <!-- INSTAGRAM -->
+                <!-- INSTAGRAM: publicaciones reales, alimentadas por instagram-feed.json
+                     (lo genera y actualiza solo el workflow de GitHub Actions). Mientras ese
+                     archivo no exista o esté vacío, se muestra el acceso directo de siempre. -->
                 <div class="social-card">
                     <div class="social-card-header">
-                        <div class="social-icon instagram">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <div class="social-icon instagram" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </div>
                         <div>
                             <h3>Instagram</h3>
                             <span>@jbmmedia_</span>
                         </div>
                     </div>
-                    
-                    <div class="ig-card-body">
-                        <div class="ig-profile-subhead">
-                            <div class="ig-avatar-group">
-                                <img src="Logo JBM/PNG/8.png" alt="JBM Media Profile" class="ig-avatar">
-                                <div>
-                                    <strong style="display:block; font-size: 14px; color: var(--text-dark);">jbmmedia_</strong>
-                                    <span style="font-size: 12px; color: var(--text-muted);">Social Media Agency</span>
-                                </div>
-                            </div>
-                            <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 6px 14px; font-size: 12px; background: linear-gradient(135deg, #F58529, #DD2A7B); border: none;">Seguir</a>
-                        </div>
 
-                        <!-- Grilla de publicaciones estáticas destacadas -->
-                        <div class="ig-feed-grid">
-                            <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener">
-                                <img src="Logo JBM/PNG/13.png" class="ig-post-thumb" alt="Post Instagram 1">
-                            </a>
-                            <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener">
-                                <img src="Logo JBM/PNG/14.png" class="ig-post-thumb" alt="Post Instagram 2">
-                            </a>
-                            <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener">
-                                <img src="Logo JBM/PNG/8.png" class="ig-post-thumb" alt="Post Instagram 3">
-                            </a>
-                            <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener">
-                                <img src="Logo JBM/PNG/4.png" class="ig-post-thumb" alt="Post Instagram 4">
-                            </a>
-                        </div>
+                    <div class="instagram-feed-wrap" id="igFeedWrap" hidden>
+                        <div class="ig-feed-grid" id="igFeedGrid"></div>
+                        <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener" class="btn" style="width: 100%; text-align: center; background-color: #FFFFFF; color: var(--text-dark); border: 1px solid #CBD5E1; font-size: 13px; margin-top: 14px;">Ver perfil completo en Instagram</a>
+                    </div>
 
-                        <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener" class="btn" style="width: 100%; text-align: center; background-color: #FFFFFF; color: var(--text-dark); border: 1px solid #CBD5E1; font-size: 13px;">Ver perfil completo en Instagram</a>
+                    <div class="instagram-fallback" id="igFallback">
+                        <p>Todavía no hay publicaciones cargadas. Mientras tanto, este es el acceso directo a nuestro perfil.</p>
+                        <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener" class="btn btn-primary" style="background-color:#DD2A7B; box-shadow: 0 4px 14px rgba(221,42,123,0.35);">Ver en Instagram</a>
                     </div>
                 </div>
             </div>
@@ -458,10 +424,55 @@
         </div>
     </footer>
 
-    <!-- SDK oficial de Facebook -->
+    <!-- SDK oficial de Facebook para el Page Plugin -->
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0"></script>
 
-    <!-- Shared script -->
+    <!-- Shared script (navbar state, logo swap) -->
     <script src="script.js" defer></script>
+
+    <!-- Page-specific: pinta el feed real de Instagram desde instagram-feed.json.
+         Ese archivo lo genera y renueva solo el workflow de GitHub Actions
+         (.github/workflows/instagram-feed.yml); mientras no exista o esté vacío
+         (por ejemplo, antes de configurar el token de Meta), se deja el acceso
+         directo de siempre en vez de mostrar una tarjeta rota o vacía. -->
+    <script>
+        (function () {
+            fetch('instagram-feed.json', { cache: 'no-store' })
+                .then(function (res) {
+                    if (!res.ok) throw new Error('instagram-feed.json no disponible todavía');
+                    return res.json();
+                })
+                .then(function (posts) {
+                    if (!Array.isArray(posts) || posts.length === 0) return;
+
+                    var grid = document.getElementById('igFeedGrid');
+                    posts.slice(0, 4).forEach(function (post) {
+                        if (!post.image) return;
+                        var link = document.createElement('a');
+                        link.href = post.permalink || 'https://www.instagram.com/jbmmedia_/';
+                        link.target = '_blank';
+                        link.rel = 'noopener';
+                        link.className = 'ig-post-thumb-link';
+
+                        var img = document.createElement('img');
+                        img.src = post.image;
+                        img.alt = post.caption ? post.caption : 'Publicación de Instagram de JBM Media';
+                        img.loading = 'lazy';
+                        img.decoding = 'async';
+                        img.className = 'ig-post-thumb';
+
+                        link.appendChild(img);
+                        grid.appendChild(link);
+                    });
+
+                    document.getElementById('igFeedWrap').hidden = false;
+                    document.getElementById('igFallback').style.display = 'none';
+                })
+                .catch(function () {
+                    // Sin feed todavía: se queda el acceso directo (#igFallback), que ya
+                    // está visible por defecto, así que no hace falta hacer nada más.
+                });
+        })();
+    </script>
 </body>
 </html>
