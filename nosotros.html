@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nosotros | JBM Media</title>
+
+    <link rel="icon" type="image/png" href="Logo JBM/PNG/8.png">
+    <link rel="preload" as="image" href="Logo JBM/PNG/4.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Shared stylesheet (cached across every page of the site) -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ---- Page-specific styles for Nosotros ---- */
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: #FFFFFF;
+            padding: 140px 0 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: #E2E8F0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* GENERAL SECTIONS (mismo patrón que index.html) */
+        .section { padding: 60px 0; }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        .section-tag {
+            color: var(--accent-orange);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .section-description {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* ABOUT / DNA (movido desde index.html) */
+        .dna-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .dna-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border-top: 5px solid var(--primary-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dna-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .dna-card.accent {
+            border-top-color: var(--accent-orange);
+        }
+
+        .dna-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .dna-icon {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            flex-shrink: 0;
+            margin-top: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .dna-card:hover .dna-icon {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .pilar-card {
+            background-color: var(--bg-white);
+            padding: 24px 16px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pilar-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        .pilar-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 6px;
+        }
+
+        .pilar-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* REDES SOCIALES */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .social-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .social-icon.facebook { background: #1877F2; }
+        .social-icon.instagram { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF, #515BD4); }
+
+        .social-card-header h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .social-card-header span {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .fb-embed-wrap {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            min-height: 300px;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .instagram-fallback {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--sand-bg);
+            border-radius: 12px;
+            padding: 40px 20px;
+            gap: 14px;
+        }
+
+        .instagram-fallback p {
+            font-size: 14px;
+            color: var(--text-muted);
+            max-width: 280px;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 28px; }
+            .dna-grid { grid-template-columns: 1fr; }
+            .dna-card { gap: 14px; }
+            .dna-icon { width: 64px; height: 64px; margin-top: 2px; }
+            .pilares-grid { grid-template-columns: repeat(2, 1fr); }
+            .social-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <img id="main-logo" src="Logo JBM/PNG/4.png" alt="JBM Media Logo" width="200" height="120">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html" style="color: var(--accent-orange);">Nosotros</a></li>
+                <li><a href="paquetes.html">Paquetes</a></li>
+                <li><a href="index.html#portafolio">Portafolio</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <a href="contacto.html" class="btn btn-primary">Agendar Asesoría</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Nosotros</h1>
+            <p>Conoce la esencia detrás de JBM Media: quiénes somos, qué nos mueve, y dónde puedes seguir todo lo que creamos.</p>
+        </div>
+    </header>
+
+    <!-- ABOUT & BRAND ESSENCE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nuestra Identidad</span>
+                <h2 class="section-title">Construimos marcas memorables y rentables</h2>
+                <p class="section-description">Acompañamos a tu negocio en el entorno digital combinando la visión estratégica del marketing con la potencia del diseño visual.</p>
+            </div>
+
+            <div class="dna-grid">
+                <div class="dna-card">
+                    <img class="dna-icon" src="Logo JBM/PNG/13.png" alt="Ícono Quiénes Somos" loading="lazy" decoding="async" width="85" height="85">
+                    <div>
+                        <h3>¿Quiénes Somos?</h3>
+                        <p>Somos una agencia de Social Media Management enfocada en construir una presencia digital profesional, estratégica y coherente para negocios y marcas personales.</p>
+                    </div>
+                </div>
+                <div class="dna-card accent">
+                    <img class="dna-icon" src="Logo JBM/PNG/14.png" alt="Ícono Propuesta de Valor" loading="lazy" decoding="async" width="85" height="85">
+                    <div>
+                        <h3>Propuesta de Valor</h3>
+                        <p>No solo buscamos que tus redes sociales se vean estéticas; diseñamos estrategias de contenido orientadas a generar confianza, comunidad y ventas reales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PILARES -->
+            <div style="margin-top: 50px;">
+                <div class="section-header" style="margin-bottom: 24px;">
+                    <span class="section-tag">Metodología</span>
+                    <h3 style="font-size: 22px; font-weight: 700;">Nuestros Pilares de Trabajo</h3>
+                </div>
+                <div class="pilares-grid">
+                    <div class="pilar-card">
+                        <h4>Estrategia</h4>
+                        <p>Comunicación con intención, objetivos claros y métricas.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Creatividad</h4>
+                        <p>Diseño audiovisual disruptivo y formatos en tendencia.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Cercanía</h4>
+                        <p>Conexión orgánica y real con la audiencia objetivo.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4>Resultados</h4>
+                        <p>Crecimiento sostenible y retorno de inversión.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REDES SOCIALES -->
+    <section class="section" style="background-color: rgba(255,255,255,0.6);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Comunidad</span>
+                <h2 class="section-title">Síguenos en Redes Sociales</h2>
+                <p class="section-description">Mira nuestro trabajo más reciente y sé parte de la conversación.</p>
+            </div>
+
+            <div class="social-grid">
+                <!-- FACEBOOK: Page Plugin oficial, feed en vivo real, no requiere API key -->
+                <div class="social-card">
+                    <div class="social-card-header">
+                        <div class="social-icon facebook">f</div>
+                        <div>
+                            <h3>Facebook</h3>
+                            <span>@jbmsmm</span>
+                        </div>
+                    </div>
+                    <div class="fb-embed-wrap">
+                        <div id="fb-root"></div>
+                        <div class="fb-page"
+                             data-href="https://www.facebook.com/jbmsmm"
+                             data-tabs="timeline"
+                             data-width="500"
+                             data-height="500"
+                             data-small-header="true"
+                             data-adapt-container-width="true"
+                             data-hide-cover="false"
+                             data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/jbmsmm" class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/jbmsmm">JBM Media</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INSTAGRAM: no existe un widget oficial gratuito de feed sin API/token,
+                     así que por ahora es una tarjeta de perfil con acceso directo. -->
+                <div class="social-card">
+                    <div class="social-card-header">
+                        <div class="social-icon instagram">📷</div>
+                        <div>
+                            <h3>Instagram</h3>
+                            <span>@jbmmedia_</span>
+                        </div>
+                    </div>
+                    <div class="instagram-fallback">
+                        <p>Instagram no ofrece un feed en vivo gratuito sin conectar una cuenta de desarrollador de Meta. Por ahora, este es el acceso directo a nuestro perfil.</p>
+                        <a href="https://www.instagram.com/jbmmedia_/" target="_blank" rel="noopener" class="btn btn-primary" style="background-color:#DD2A7B; box-shadow: 0 4px 14px rgba(221,42,123,0.35);">Ver en Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 JBM Media — Social Media Management. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SDK oficial de Facebook para el Page Plugin -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0"></script>
+
+    <!-- Shared script (navbar state, logo swap) -->
+    <script src="script.js" defer></script>
+</body>
+</html>
