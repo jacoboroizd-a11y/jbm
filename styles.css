@@ -6,6 +6,7 @@
    ========================================================================== */
 
 :root {
+    --font-heading: 'MuseoModerno', 'Plus Jakarta Sans', sans-serif;
     --primary-blue: #3871B8;
     --dark-blue: #1A467B;
     --accent-orange: #F59249;
@@ -48,6 +49,12 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+/* Brand typeface (per brandbook) on every heading site-wide.
+   Body copy, nav, and buttons stay on Plus Jakarta Sans for readability. */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
 }
 
 .container {
