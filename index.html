@@ -154,6 +154,9 @@
         }
 
         .dna-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
             background: var(--bg-white);
             padding: 30px;
             border-radius: 20px;
@@ -171,28 +174,21 @@
             border-top-color: var(--accent-orange);
         }
 
-        .dna-icon {
-            width: 120px;
-            height: 120px;
-            background-color: #EFF6FF;
-            color: var(--primary-blue);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+        .dna-card h3 {
+            margin-bottom: 8px;
         }
 
-        .dna-icon img {
-            width: 85px;
-            height: 85px;
+        .dna-icon {
+            width: 56px;
+            height: 56px;
             object-fit: contain;
+            flex-shrink: 0;
+            margin-top: 4px;
+            transition: transform 0.3s ease;
         }
 
         .dna-card:hover .dna-icon {
             transform: scale(1.1) rotate(3deg);
-            background-color: rgba(56, 113, 184, 0.15);
         }
 
         .pilares-grid {
@@ -372,8 +368,8 @@
             .stat-card { border-right: none; border-bottom: 1px solid #F1F5F9; padding-bottom: 12px; }
             .stat-card:last-child { border-bottom: none; padding-bottom: 0; }
             .dna-grid { grid-template-columns: 1fr; }
-            .dna-icon { width: 90px; height: 90px; }
-            .dna-icon img { width: 60px; height: 60px; }
+            .dna-card { gap: 14px; }
+            .dna-icon { width: 44px; height: 44px; margin-top: 2px; }
             .pilares-grid { grid-template-columns: repeat(2, 1fr); }
             .portfolio-grid { grid-template-columns: 1fr; }
             .portfolio-body { padding: 16px; }
@@ -451,18 +447,18 @@
 
             <div class="dna-grid">
                 <div class="dna-card">
-                    <div class="dna-icon">
-                        <img src="Logo JBM/PNG/13.png" alt="Ícono Quiénes Somos" loading="lazy" decoding="async" width="85" height="85">
+                    <img class="dna-icon" src="Logo JBM/PNG/13.png" alt="Ícono Quiénes Somos" loading="lazy" decoding="async" width="56" height="56">
+                    <div>
+                        <h3>¿Quiénes Somos?</h3>
+                        <p>Somos una agencia de Social Media Management enfocada en construir una presencia digital profesional, estratégica y coherente para negocios y marcas personales.</p>
                     </div>
-                    <h3>¿Quiénes Somos?</h3>
-                    <p>Somos una agencia de Social Media Management enfocada en construir una presencia digital profesional, estratégica y coherente para negocios y marcas personales.</p>
                 </div>
                 <div class="dna-card accent">
-                    <div class="dna-icon">
-                        <img src="Logo JBM/PNG/14.png" alt="Ícono Propuesta de Valor" loading="lazy" decoding="async" width="85" height="85">
+                    <img class="dna-icon" src="Logo JBM/PNG/14.png" alt="Ícono Propuesta de Valor" loading="lazy" decoding="async" width="56" height="56">
+                    <div>
+                        <h3>Propuesta de Valor</h3>
+                        <p>No solo buscamos que tus redes sociales se vean estéticas; diseñamos estrategias de contenido orientadas a generar confianza, comunidad y ventas reales.</p>
                     </div>
-                    <h3>Propuesta de Valor</h3>
-                    <p>No solo buscamos que tus redes sociales se vean estéticas; diseñamos estrategias de contenido orientadas a generar confianza, comunidad y ventas reales.</p>
                 </div>
             </div>
 
