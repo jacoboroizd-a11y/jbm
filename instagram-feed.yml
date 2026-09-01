@@ -1,0 +1,74 @@
+name: Actualizar feed de Instagram
+
+# Corre todos los días y también se puede lanzar a mano desde la pestaña
+# "Actions" del repo (botón "Run workflow") para probarlo sin esperar al cron.
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Descargar publicaciones recientes de Instagram
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          set -e
+          curl -s "https://graph.instagram.com/${IG_USER_ID}/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${IG_ACCESS_TOKEN}&limit=8" \
+            -o raw-instagram.json
+
+          # Si Instagram devuelve un error (token vencido, ID incorrecto, etc.)
+          # NO tocamos el instagram-feed.json existente: mejor mantener el feed
+          # anterior en el sitio que romperlo, y el job falla para que se note.
+          if jq -e '.error' raw-instagram.json > /dev/null 2>&1; then
+            echo "::error::La API de Instagram devolvió un error. Revisa IG_ACCESS_TOKEN e IG_USER_ID en los secretos del repo."
+            cat raw-instagram.json
+            exit 1
+          fi
+
+          jq '[.data[] | {
+                image: (if .media_type == "VIDEO" then .thumbnail_url else .media_url end),
+                caption: ((.caption // "") | .[0:120]),
+                permalink: .permalink,
+                timestamp: .timestamp
+              }]' raw-instagram.json > instagram-feed.json
+
+          rm raw-instagram.json
+
+      - name: Publicar el feed si cambió
+        run: |
+          if ! git diff --quiet -- instagram-feed.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add instagram-feed.json
+            git commit -m "Actualizar feed de Instagram [auto]"
+            git push
+          else
+            echo "Sin publicaciones nuevas, no hay nada que actualizar."
+          fi
+
+      - name: Renovar el token de acceso (dura 60 días, se renueva todos los días para no quedarse sin margen)
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          set -e
+          RESPONSE=$(curl -s "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_ACCESS_TOKEN}")
+          NEW_TOKEN=$(echo "$RESPONSE" | jq -r '.access_token // empty')
+
+          if [ -z "$NEW_TOKEN" ]; then
+            echo "::error::No se pudo renovar el token de Instagram. Respuesta de la API: $RESPONSE"
+            exit 1
+          fi
+
+          echo "$NEW_TOKEN" | gh secret set IG_ACCESS_TOKEN --repo "${{ github.repository }}"
+          echo "Token renovado y guardado en el secreto IG_ACCESS_TOKEN."
